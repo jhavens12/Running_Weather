@@ -10,7 +10,7 @@ bw = w/2
 sp = 5
 smg = 5
 tmg = 20
-lblh = 32
+lblh = 64
 lblw = (w/3)-20
 
 forecast_dict = get_data.forecast_me()
@@ -30,8 +30,9 @@ for n,day in enumerate(forecast_dict):
     label_name.border_color = 'black'
     label_name.tint_color = 'black'
     label_name.border_width = 1
-    label_name.alignment= 'center'
-    label_name.font_size = '12'
+    label_name.alignment = 2
+    label_name.font = ('<system>',12)
+    label_name.number_of_lines = 2
     label_name.text = forecast_dict[day]['time']['pretty']
 
     view_name.add_subview(label_name)
