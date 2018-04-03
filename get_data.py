@@ -3,6 +3,7 @@ import requests
 from pprint import pprint
 import datetime
 import pickle
+from pathlib import Path
 
 wu_key = credentials.wu_key
 my_lat = credentials.my_lat
@@ -19,6 +20,7 @@ def open_file():
         f=open(dictionary_file,"w+") #create file
         f.close()
         forecast_dict = {}
+        forecast_dict['timestamp'] = datetime.datetime(1900, 1, 1)
     return forecast_dict
 
 def close_file(forecast_dict):
