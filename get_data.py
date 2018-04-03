@@ -16,6 +16,7 @@ def open_file():
     if dictionary_file.is_file():
         pickle_in = open(dictionary_file,"rb")
         forecast_dict = pickle.load(pickle_in)
+        #dictionary already has a timestamp key
     else:
         f=open(dictionary_file,"w+") #create file
         f.close()
@@ -69,7 +70,7 @@ def forecast_me():
     forecast_dict = open_file()
     current_timestamp = datetime.datetime.now()
     if forecast_dict['timestamp'] < current_timestamp-datetime.timedelta(hours=1):
-        print("Forecast dict is over an hour old, gathering new information")
+        print("Gathering new information")
 
         forecast_dict = {} #reset the dictionary
         term = 'hourly10day'
@@ -90,8 +91,9 @@ def forecast_me():
                     del forecast_dict[date_key]['time']['UTCDATE']
                     forecast_dict[date_key]['weather'] = hour
                     del forecast_dict[date_key]['weather']['FCTTIME']
-        close_file(forecast_dict) #save the dictionary
+
         return forecast_dict
+        close_file(forecast_dict) #save the dictionary
     else:
         del forecast_dict['timestamp'] #delete timestamp so it does not interfere
         return forecast_dict
