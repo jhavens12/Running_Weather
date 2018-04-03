@@ -134,7 +134,7 @@ def value_labels(n,vis,ui,view_name,value_label_list):
     for x,text in enumerate(value_label_list):
         adjusted_label_y = vis['value_label_y'] +( x*(vis['value_label_height']+vis['title_label_margins']) )
         x = x+1
-        label_name = "vlabel"+view_number+str(x)
+        label_name = "vlabel"+str(view_name)+str(x)
         label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['value_label_x'], adjusted_label_y, vis['value_label_width'], vis['value_label_height']))
         label.border_color = 'black'
         label.text_color = 'white'
