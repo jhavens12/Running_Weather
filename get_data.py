@@ -66,8 +66,8 @@ def twilight(date_input):
 def forecast_me():
     #forecast_dict = {}
     forecast_dict = open_file()
-    timestamp = datetime.datetime.now()
-    if forecast_dict[timestamp] > timestamp-datetime.timedelta(hours=1):
+    current_timestamp = datetime.datetime.now()
+    if forecast_dict['timestamp'] > current_timestamp-datetime.timedelta(hours=1):
         print("Forecast dict is over an hour old, gathering new information")
         forecast_dict = {} #reset the dictionary
         term = 'hourly10day'
