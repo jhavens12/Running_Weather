@@ -42,13 +42,14 @@ for n,day in enumerate(forecast_dict):
     view_height = h-(top_margin*4)
     n = n+1
 
+    #Sub-Views
     view_name = "view_"+str(n)
     view_number = str(n)
     view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, view_height), background_color="#01B2FC")
     view_name.border_color = 'black'
     view_name.border_width = 0
 
-    #this creates the title labels at the top of the page
+    #Headers
     header_label_width = view_width-(side_margin*4)
     header_label_height = 64 #title labels
     label_x = side_margin*2
@@ -64,7 +65,7 @@ for n,day in enumerate(forecast_dict):
     label_name.text = forecast_dict[day]['time']['mon_abbrev']+" "+forecast_dict[day]['time']['mday']+" "+forecast_dict[day]['time']['weekday_name']+" "+forecast_dict[day]['time']['civil']
     view_name.add_subview(label_name)
 
-    #image view from url
+    #Image View
     frame_x = side_margin*4
     frame_y = label_y + header_label_height + spacing_margin
     frame_width = view_width-(side_margin*8)
@@ -76,7 +77,7 @@ for n,day in enumerate(forecast_dict):
     image_view_name.border_color = "grey"
     view_name.add_subview(image_view_name)
 
-    #working on title labels for data
+    #Title Labels
     title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
                         'Nautical Twilight:','Civil Twilight:','Sunrise:','Windspeed:']
     title_label_x = side_margin
@@ -92,7 +93,7 @@ for n,day in enumerate(forecast_dict):
         label_name.text = text
         view_name.add_subview(label_name)
 
-    #working on value labels
+    #Value Labels
     value_label_list = []
     value_label_list.append(forecast_dict[day]['weather']['condition'])
     value_label_list.append(forecast_dict[day]['weather']['temp']['english'])
