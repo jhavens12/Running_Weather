@@ -39,11 +39,12 @@ for n,day in enumerate(forecast_dict):
     entry_count = len(forecast_dict)
     view_x = side_margin+((w/entry_count)*n)
     view_width = (w/entry_count)-side_margin
+    view_height = h-(top_margin*4)
     n = n+1
 
     view_name = "view_"+str(n)
     view_number = str(n)
-    view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, h-top_margin), background_color="#01B2FC")
+    view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, view_height), background_color="#01B2FC")
     view_name.border_color = 'black'
     view_name.border_width = 0
 
@@ -74,7 +75,7 @@ for n,day in enumerate(forecast_dict):
     view_name.add_subview(image_view_name)
 
     #working on title labels for data
-    title_label_list = ['Condition','Actual Temp','Feels Like','Windchill','% Percip','Humidity','Astro Twilight',\
+    title_label_list = ['Condition','Actual Temperature','Feels Like','Windchill','% Precipitation','Humidity','Astro Twilight',\
                         'Nautical Twilight','Civil Twilight','Sunrise','Windspeed']
     title_label_x = side_margin
     title_label_y = frame_y+frame_height
