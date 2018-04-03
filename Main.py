@@ -1,4 +1,4 @@
-title_labelimport get_data
+import get_data
 import ui
 
 
@@ -8,7 +8,6 @@ view = ui.View(bg_color = 'lightyellow', frame = (0,0,w,h))
 side_margin = 5
 w = w-side_margin
 top_margin = 20
-title_label_height = 64 #title labels
 other_label_height = 32
 spacing_margin = 15
 
@@ -49,11 +48,12 @@ for n,day in enumerate(forecast_dict):
     view_name.border_width = 1
 
     #this creates the title labels at the top of the page
-    label_width = view_width-(side_margin*4)
+    header_label_width = view_width-(side_margin*4)
+    header_label_height = 64 #title labels
     label_x = side_margin*2
     label_y = top_margin
     label_name = "label"+str(n)
-    label_name = ui.Label(name = label_name, bg_color ='white', frame = (label_x, label_y, label_width, title_label_height))
+    label_name = ui.Label(name = label_name, bg_color ='white', frame = (label_x, label_y, header_label_width, header_label_height))
     label_name.border_color = 'black'
     label_name.tint_color = 'black'
     label_name.border_width = 1
@@ -92,12 +92,12 @@ for n,day in enumerate(forecast_dict):
     #working on value labels
     value_label_list = []
     value_label_list.append(forecast_dict[day]['weather']['condition'])
-    value_label_list.append(forecast_dict[day]['weather']['feelslike'])
+    value_label_list.append(forecast_dict[day]['weather']['feelslike']['english'])
     value_label_list.append(forecast_dict[day]['weather']['pop'])
     value_label_list.append(forecast_dict[day]['weather']['temp']['english'])
-    value_label_list.append(forecast_dict[day]['twilight']['astronomical_twilight_begin'])
-    value_label_list.append(forecast_dict[day]['twilight']['civil_twilight_begin'])
-    value_label_list.append(forecast_dict[day]['twilight']['sunrise'])
+    value_label_list.append(forecast_dict[day]['twilight']['astronomical_twilight_begin_time'])
+    value_label_list.append(forecast_dict[day]['twilight']['civil_twilight_begin_time'])
+    value_label_list.append(forecast_dict[day]['twilight']['sunrise_time'])
 
     value_label_x = side_margin*2
     value_label_y = frame_y+frame_height+spacing_margin*2
@@ -108,7 +108,7 @@ for n,day in enumerate(forecast_dict):
         adjusted_label_y = value_label_y +( x*(other_label_height+label_margins) )
         label_name = "vlabel"+view_number+str(x)
         label_name = create_value_label(label_name, value_label_x, adjusted_label_y, value_label_width, value_label_height)
-        label_name.text = text
+        label_name.text = str(text)
         view_name.add_subview(label_name)
 
     view.add_subview(view_name)

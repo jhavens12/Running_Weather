@@ -21,10 +21,14 @@ def twilight(date_input):
         sunrise_data = requests.get(url).json()
     except:
         print("error getting astro data")
+    sunrise_dict['astronomical_twilight_begin_time'] = sunrise_data['results']['astronomical_twilight_begin']
     sunrise_dict['astronomical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['astronomical_twilight_begin'])
     sunrise_dict['nautical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['nautical_twilight_begin'])
+    sunrise_dict['nautical_twilight_begin_time'] = sunrise_data['results']['nautical_twilight_begin']
     sunrise_dict['civil_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['civil_twilight_begin'])
+    sunrise_dict['civil_twilight_begin_time'] = sunrise_data['results']['civil_twilight_begin']
     sunrise_dict['sunrise'] = format_time(date_input,UTC_adjust,sunrise_data['results']['sunrise'])
+    sunrise_dict['sunrise_time'] = sunrise_data['results']['sunrise']
     return sunrise_dict
 
 def forecast_me():
