@@ -77,7 +77,7 @@ for n,day in enumerate(forecast_dict):
     view_name.add_subview(image_view_name)
 
     #working on title labels for data
-    title_label_list = ['Condition:','Actual Temperature:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
+    title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
                         'Nautical Twilight:','Civil Twilight:','Sunrise:','Windspeed:']
     title_label_x = side_margin
     title_label_y = frame_y+frame_height
