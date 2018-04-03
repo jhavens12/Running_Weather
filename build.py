@@ -1,3 +1,25 @@
+
+def create_title_label(label_name,label_x,label_y,label_width,label_height):
+
+    label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
+    label_name.border_color = 'black'
+    label_name.text_color = 'black'
+    label_name.border_width = 0
+    label_name.alignment = 0 #1 is center, #0 is left justified
+    label_name.font = ('<system>',12)
+    label_name.number_of_lines = 1
+    return label_name
+
+def create_value_label(label_name,label_x,label_y,label_width,label_height):
+    label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
+    label_name.border_color = 'black'
+    label_name.text_color = 'white'
+    label_name.border_width = 0
+    label_name.alignment = 3 #1 is center, #0 is left justified
+    label_name.font = ('<system>',14)
+    label_name.number_of_lines = 1
+    return label_name
+
 def vis(w,h,entry_count):
 
     #Static Entries
@@ -96,6 +118,12 @@ def title_labels(n,vis,ui,view_name,title_label_list):
         adjusted_label_y = vis['title_label_y'] +( x*( vis['other_label_height'] + vis['title_label_margins'] ) )
         x = x+1
         label_name = "tlabel"+str(view_name)+str(x)
-        label = create_title_label(label_name, vis['title_label_x'], adjusted_label_y, vis['title_label_width'], vis['title_label_height'])
+        label = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['title_label_x'], adjusted_label_y, vis['title_label_width'], vis['title_label_height']))
+        label.border_color = 'black'
+        label.text_color = 'black'
+        label.border_width = 0
+        label.alignment = 0 #1 is center, #0 is left justified
+        label.font = ('<system>',12)
+        label.number_of_lines = 1
         label.text = text
         view_name.add_subview(label)
