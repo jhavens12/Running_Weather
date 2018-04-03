@@ -24,7 +24,7 @@ def open_file():
     return forecast_dict
 
 def close_file(forecast_dict):
-    forecast_dict[timestamp] = datetime.datetime.now()
+    forecast_dict['timestamp'] = datetime.datetime.now()
     dictionary_file = Path('./History.dict')
     with open(dictionary_file, 'w') as outfile:
         #json.dump(history_dict, outfile)
