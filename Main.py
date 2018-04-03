@@ -65,7 +65,7 @@ for n,day in enumerate(forecast_dict):
 
     #image view from url
     frame_x = side_margin*2
-    frame_y = top_margin + title_label_height + spacing_margin
+    frame_y = top_margin + header_label_height + spacing_margin
     frame_width = view_width-(side_margin*4)
     frame_height = frame_width
     image_view_name = "ImageView"+str(n)
