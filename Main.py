@@ -66,7 +66,7 @@ for n,day in enumerate(forecast_dict):
     #image view from url
     frame_x = side_margin*2
     frame_y = top_margin + header_label_height + spacing_margin
-    frame_width = view_width-(side_margin*4)
+    frame_width = view_width-(side_margin*8)
     frame_height = frame_width
     image_view_name = "ImageView"+str(n)
     image_view_name = ui.ImageView(name=image_view_name, bg_color='white', frame=(frame_x, frame_y, frame_width, frame_height))
@@ -74,17 +74,16 @@ for n,day in enumerate(forecast_dict):
     view_name.add_subview(image_view_name)
 
     #working on title labels for data
-    #label101 - 1 is view and 01 is label number
-    title_label_list = ['Condition','Actual Temp','Feels Like','% Percip','Humidity','Astro Twilight','Nautical Twilight','Civil Twilight','Sunrise',\
-                        'Windspeed','Windchill']
+    title_label_list = ['Condition','Actual Temp','Feels Like','Windchill','% Percip','Humidity','Astro Twilight',\
+                        'Nautical Twilight','Civil Twilight','Sunrise','Windspeed']
     title_label_x = side_margin
     title_label_y = frame_y+frame_height
     title_label_width = view_width-(side_margin*4)
     title_label_height = other_label_height
     label_margins = 1
     for x,text in enumerate(title_label_list):
-        x = x+1
         adjusted_label_y = title_label_y +( x*(other_label_height+label_margins) )
+        x = x+1
         label_name = "tlabel"+view_number+str(x)
         label_name = create_title_label(label_name, title_label_x, adjusted_label_y, title_label_width, title_label_height)
         label_name.text = text
@@ -95,6 +94,7 @@ for n,day in enumerate(forecast_dict):
     value_label_list.append(forecast_dict[day]['weather']['condition'])
     value_label_list.append(forecast_dict[day]['weather']['temp']['english'])
     value_label_list.append(forecast_dict[day]['weather']['feelslike']['english'])
+    value_label_list.append(forecast_dict[day]['weather']['windchill']['english'])
     value_label_list.append(forecast_dict[day]['weather']['pop'])
     value_label_list.append(forecast_dict[day]['weather']['humidity'])
     value_label_list.append(forecast_dict[day]['twilight']['astronomical_twilight_begin_time'])
@@ -102,7 +102,6 @@ for n,day in enumerate(forecast_dict):
     value_label_list.append(forecast_dict[day]['twilight']['civil_twilight_begin_time'])
     value_label_list.append(forecast_dict[day]['twilight']['sunrise_time'])
     value_label_list.append(forecast_dict[day]['weather']['wspd']['english'])
-    value_label_list.append(forecast_dict[day]['weather']['windchill']['english'])
 
     value_label_x = side_margin*2
     value_label_y = frame_y+frame_height+spacing_margin
