@@ -5,32 +5,26 @@ import ui
 w,h = ui.get_screen_size()
 view = ui.View(bg_color = 'lightyellow', frame = (0,0,w,h))
 
-bh = 32
-bw = w/2
-sp = 5
-smg = 5
-tmg = 20
-lblh = 64
-lblw = (w/3)-20
+side_margin = 5
+w = w-side_margin
+top_margin = 20
 
 forecast_dict = get_data.forecast_me()
 
-#view_1 = ui.ScrollView(frame=(0, tmg, w/3, h-tmg), background_color='orange')
-#view_2 = ui.ScrollView(frame=(0+w/3, tmg, w/3, h-tmg), background_color='purple')
-#view_3 = ui.ScrollView(frame=(0+((w/3)*2), tmg, w/3, h-tmg), background_color='green')
-
-
 for n,day in enumerate(forecast_dict):
-    frame_x = smg+((w/3)*n)
-    frame_width = (w/3)-smg
+    view_x = side_margin+((w/3)*n)
+    view_width = (w/3)-side_margin
     n = n+1
     label_name = "label"+str(n)
     view_name = "view_"+str(n)
-    view_name = ui.ScrollView(frame=(frame_x, tmg, frame_width, h-tmg), background_color='lightyellow')
+    view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, h-top_margin), background_color='lightyellow')
     view_name.border_color = 'black'
     view_name.border_width = 1
 
-    label_name = ui.Label(name = label_name, bg_color ='white', frame = (smg, tmg, lblw, lblh))
+    label_width = view_width-(side_margin*4)
+    label_x = side_margin*2
+    label_y = top_margin
+    label_name = ui.Label(name = label_name, bg_color ='white', frame = (label_x, label_y, label_width, lblh))
     label_name.border_color = 'black'
     label_name.tint_color = 'black'
     label_name.border_width = 1
