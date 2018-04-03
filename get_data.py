@@ -92,8 +92,10 @@ def forecast_me():
                     forecast_dict[date_key]['weather'] = hour
                     del forecast_dict[date_key]['weather']['FCTTIME']
 
-        return forecast_dict
         close_file(forecast_dict) #save the dictionary
+        print(forecast_dict['timestamp'])
+        return forecast_dict
+
     else:
         del forecast_dict['timestamp'] #delete timestamp so it does not interfere
         return forecast_dict
