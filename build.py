@@ -36,7 +36,7 @@ def vis(w,h,entry_count):
 
     return vis
 
-def titles_and_labels(day):
+def titles_and_values(day):
     #put toogether dictionary of data we want to display based on forecast dict
     title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
                         'Nautical Twilight:','Civil Twilight:','Sunrise:','Windspeed:']
@@ -95,7 +95,7 @@ def title_labels(n,vis,ui,view_name,title_label_list):
     for x,text in enumerate(title_label_list):
         adjusted_label_y = vis['title_label_y'] +( x*( vis['other_label_height'] + vis['title_label_margins'] ) )
         x = x+1
-        label_name = "tlabel"+view_name+str(x)
+        label_name = "tlabel"+str(view_name)+str(x)
         label = create_title_label(label_name, vis['title_label_x'], adjusted_label_y, vis['title_label_width'], vis['title_label_height'])
         label.text = text
         view_name.add_subview(label)

@@ -24,7 +24,7 @@ for n,day in enumerate(forecast_dict):
     #imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
     #view_dict[q].add_subview(imageview)
 
-    title_label_list,value_label_list = build.title_and_values(forecast_dict[day])
+    title_label_list,value_label_list = build.titles_and_values(forecast_dict[day])
 
     build.title_labels(n,vis,ui,view_dict[q],title_label_list)
     #value_labels
