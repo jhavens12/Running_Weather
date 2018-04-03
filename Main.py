@@ -34,9 +34,10 @@ for n,day in enumerate(forecast_dict):
     label_name.title = forecast_dict[day]['time']['pretty']
 
     view_name.add_subview(label_name)
+    view.add_subview(view_name)
 
-view.add_subview(view_1)
-view.add_subview(view_2)
-view.add_subview(view_3)
+
+# view.add_subview(view_2)
+# view.add_subview(view_3)
 
 view.present(style='sheet', hide_title_bar=True)
