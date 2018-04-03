@@ -12,7 +12,6 @@ other_label_height = 32
 spacing_margin = 10
 
 forecast_dict = get_data.forecast_me()
-del forecast_dict['timestamp'] #delete timestamp so it does not interfere
 
 def create_title_label(label_name,label_x,label_y,label_width,label_height):
 
