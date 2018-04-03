@@ -15,19 +15,17 @@ lblw = 40
 
 forecast_dict = get_data.forecast_me()
 
-view_1 = ui.ScrollView(frame=(0, tmg, w/3, h-tmg), background_color='orange')
-view_2 = ui.ScrollView(frame=(0+w/3, tmg, w/3, h-tmg), background_color='purple')
-view_3 = ui.ScrollView(frame=(0+((w/3)*2), tmg, w/3, h-tmg), background_color='green')
+#view_1 = ui.ScrollView(frame=(0, tmg, w/3, h-tmg), background_color='orange')
+#view_2 = ui.ScrollView(frame=(0+w/3, tmg, w/3, h-tmg), background_color='purple')
+#view_3 = ui.ScrollView(frame=(0+((w/3)*2), tmg, w/3, h-tmg), background_color='green')
 
-view_dict = {}
-view_dict[1] = view_1
-view_dict[2] = view_2
-view_dict[3] = view_3
 
-for n,day,sub_view in enumerate(zip(forecast_dict,view_dict)):
+for n,day in enumerate(forecast_dict):
     n = n+1
     label_name = "label"+str(n)
-    #view_name = "view"+str(n)
+    view_name = "view_"+str(n)
+    frame_x = 0+((w/3)*n)
+    view_name = ui.ScrollView(frame=(frame_x, tmg, w/3, h-tmg), background_color='orange')
     label_name = ui.Label(name = label_name, bg_color ='white', frame = (0, tmg, lblw, lblh))
     label_name.border_color = 'black'
     label_name.tint_color = 'black'
@@ -35,7 +33,7 @@ for n,day,sub_view in enumerate(zip(forecast_dict,view_dict)):
     label_name.alignment=1
     label_name.title = forecast_dict[day]['time']['pretty']
 
-    sub_view.add_subview(label_name)
+    view_name.add_subview(label_name)
 
 view.add_subview(view_1)
 view.add_subview(view_2)
