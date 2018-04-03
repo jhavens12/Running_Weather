@@ -58,13 +58,13 @@ for n,day in enumerate(forecast_dict):
     label_name.tint_color = 'black'
     label_name.border_width = 1
     label_name.alignment = 1 #1 is center, 0 is left justified
-    label_name.font = ('<system>',12)
+    label_name.font = ('<system>',18)
     label_name.number_of_lines = 2
-    label_name.text = forecast_dict[day]['time']['pretty']
+    label_name.text = forecast_dict[day]['time']['weekday_name']+" "+forecast_dict[day]['time']['civil']
     view_name.add_subview(label_name)
 
     #image view from url
-    frame_x = side_margin*2
+    frame_x = side_margin*4
     frame_y = top_margin + header_label_height + spacing_margin
     frame_width = view_width-(side_margin*8)
     frame_height = frame_width
@@ -108,8 +108,8 @@ for n,day in enumerate(forecast_dict):
     value_label_width = view_width-(side_margin*4)
     value_label_height = other_label_height
     for x,text in enumerate(value_label_list):
-        x = x+1
         adjusted_label_y = value_label_y +( x*(other_label_height+label_margins) )
+        x = x+1
         label_name = "vlabel"+view_number+str(x)
         label_name = create_value_label(label_name, value_label_x, adjusted_label_y, value_label_width, value_label_height)
         label_name.text = str(text)
