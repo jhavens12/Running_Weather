@@ -107,7 +107,7 @@ for n,day in enumerate(forecast_dict):
     value_label_list.append(forecast_dict[day]['weather']['wspd']['english'])
 
     value_label_x = side_margin*2
-    value_label_y = frame_y+frame_height+spacing_margin
+    value_label_y = frame_y+frame_height+(other_label_height/2)
     value_label_width = view_width-(side_margin*4)
     value_label_height = other_label_height
     for x,text in enumerate(value_label_list):
