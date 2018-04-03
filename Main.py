@@ -21,10 +21,9 @@ def create_label(label_name,label_x,label_y,label_width,label_height):
     label_name.border_color = 'black'
     label_name.tint_color = 'black'
     label_name.border_width = 1
-    label_name.alignment = 1 #1 is center
+    label_name.alignment = 0 #1 is center, #0 is left justified
     label_name.font = ('<system>',12)
-    label_name.number_of_lines = 2
-
+    label_name.number_of_lines = 1
     return label_name
 
 for n,day in enumerate(forecast_dict):
@@ -48,7 +47,7 @@ for n,day in enumerate(forecast_dict):
     label_name.border_color = 'black'
     label_name.tint_color = 'black'
     label_name.border_width = 1
-    label_name.alignment = 1 #1 is center
+    label_name.alignment = 1 #1 is center, 0 is left justified
     label_name.font = ('<system>',12)
     label_name.number_of_lines = 2
     label_name.text = forecast_dict[day]['time']['pretty']
@@ -66,17 +65,19 @@ for n,day in enumerate(forecast_dict):
 
     #working on title labels
     #label101 - 1 is view and 01 is label number
-    value_label_list = ['Condition','Feels Like','% Percip']
+    value_label_list = ['Condition','Feels Like','% Percip','Actual Temp','Astro Twilight','Civil Twilight','Sunrise']
     value_label_x = side_margin
-    value_label_y = frame_y+spacing_margin
+    value_label_y = frame_y+frame_height+spacing_margin
     value_label_width = view_width-(side_margin*4)
     value_label_height = other_label_height
-    for x,VL in enumerate(value_label_list):
+    label_margins = 1
+    for x,text in enumerate(value_label_list):
         x = x+1
-        adjusted_label_y = value_label_y +( x*(other_label_height+spacing_margin) )
+        adjusted_label_y = value_label_y +( x*(other_label_height+label_margins) )
         label_name = "label"+view_number+str(x)
         label_name = create_label(label_name, value_label_x, adjusted_label_y, value_label_width, value_label_height)
-        label_name.text(VL)
+        label_name.text = text
+        view_name.add_subview(label_name)
 
     #working on value labels
 
