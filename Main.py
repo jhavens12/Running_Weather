@@ -22,14 +22,15 @@ forecast_dict = get_data.forecast_me()
 
 for n,day in enumerate(forecast_dict):
     frame_x = smg+((w/3)*n)
+    frame_width = (w/3)-smg
     n = n+1
     label_name = "label"+str(n)
     view_name = "view_"+str(n)
-    view_name = ui.ScrollView(frame=(frame_x, tmg, w/3, h-tmg), background_color='lightyellow')
+    view_name = ui.ScrollView(frame=(frame_x, tmg, frame_width, h-tmg), background_color='lightyellow')
     view_name.border_color = 'black'
     view_name.border_width = 1
 
-    label_name = ui.Label(name = label_name, bg_color ='white', frame = (0, tmg, lblw, lblh))
+    label_name = ui.Label(name = label_name, bg_color ='white', frame = (smg, tmg, lblw, lblh))
     label_name.border_color = 'black'
     label_name.tint_color = 'black'
     label_name.border_width = 1
