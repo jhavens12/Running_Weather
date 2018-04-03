@@ -60,8 +60,8 @@ for n,day in enumerate(forecast_dict):
     label_name.alignment = 1 #1 is center, 0 is left justified
     label_name.font = ('<system>',17)
     label_name.number_of_lines = 3
-    label_name.text = forecast_dict[day]['time']['weekday_name']+" "+forecast_dict[day]['time']['mon_abbrev']+" "\
-                        +forecast_dict[day]['time']['mday']+" "+forecast_dict[day]['time']['civil']
+    label_name.text = forecast_dict[day]['time']['weekday_name']+"   "+forecast_dict[day]['time']['mon_abbrev']+" "+\
+                        forecast_dict[day]['time']['mday']+"   "+forecast_dict[day]['time']['civil']
     view_name.add_subview(label_name)
 
     #image view from url
