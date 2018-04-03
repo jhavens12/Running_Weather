@@ -18,7 +18,7 @@ def create_title_label(label_name,label_x,label_y,label_width,label_height):
     #label_name = "label"+str(n)
     label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
     label_name.border_color = 'black'
-    label_name.tint_color = 'black'
+    label_name.text_color = 'black'
     label_name.border_width = 0
     label_name.alignment = 0 #1 is center, #0 is left justified
     label_name.font = ('<system>',12)
@@ -28,7 +28,7 @@ def create_title_label(label_name,label_x,label_y,label_width,label_height):
 def create_value_label(label_name,label_x,label_y,label_width,label_height):
     label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
     label_name.border_color = 'black'
-    label_name.tint_color = 'green'
+    label_name.text_color = 'green'
     label_name.border_width = 0
     label_name.alignment = 3 #1 is center, #0 is left justified
     label_name.font = ('<system>',14)
@@ -58,9 +58,10 @@ for n,day in enumerate(forecast_dict):
     label_name.tint_color = 'black'
     label_name.border_width = 1
     label_name.alignment = 1 #1 is center, 0 is left justified
-    label_name.font = ('<system>',18)
-    label_name.number_of_lines = 2
-    label_name.text = forecast_dict[day]['time']['weekday_name']+" "+forecast_dict[day]['time']['civil']
+    label_name.font = ('<system>',17)
+    label_name.number_of_lines = 3
+    label_name.text = forecast_dict[day]['time']['weekday_name']+" "+forecast_dict[day]['time']['mon_abbrev']+" "\
+                        forecast_dict[day]['time']['mday']+" "+forecast_dict[day]['time']['civil']
     view_name.add_subview(label_name)
 
     #image view from url
