@@ -57,3 +57,13 @@ def headers(n,vis,ui,day,view_name):
     header.text = day['time']['mon_abbrev']+" "+day['time']['mday']+" "+day['time']['weekday_name']+" "+day['time']['civil']
 
     return header
+
+def imageview(n,vis,ui,day,view_name):
+    #Image View
+    image_view_name = "imageview"+str(n)
+    image_view_name = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
+    imageview.load_from_url(day['weather']['icon_url'])
+    imageview.border_width = 1
+    imageview.border_color = "grey"
+
+    return imageview
