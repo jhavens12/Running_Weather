@@ -14,6 +14,10 @@ def format_time(date_input,UTC_adjust,time):
     datetime_object = datetime.datetime.strptime(temp_date, "%Y-%m-%d %I:%M:%S %p")
     return datetime_object - UTC_adjust
 
+def nice_time(time):
+    #return str(time.hour)+":"+str(time.minute)+":"+str(time.second)
+    return str(time.time().strftime("%H:%M:%S"))
+
 def twilight(date_input):
     sunrise_dict = {}
     url = "https://api.sunrise-sunset.org/json?lat="+my_lat+"&lng="+my_long+"&date="+date_input
@@ -23,12 +27,16 @@ def twilight(date_input):
         print("error getting astro data")
     sunrise_dict['astronomical_twilight_begin_time'] = sunrise_data['results']['astronomical_twilight_begin']
     sunrise_dict['astronomical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['astronomical_twilight_begin'])
+
     sunrise_dict['nautical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['nautical_twilight_begin'])
-    sunrise_dict['nautical_twilight_begin_time'] = sunrise_data['results']['nautical_twilight_begin']
+    sunrise_dict['nautical_twilight_begin_time'] = nice_time(sunrise_dict['nautical_twilight_begin'])
+
     sunrise_dict['civil_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['civil_twilight_begin'])
-    sunrise_dict['civil_twilight_begin_time'] = sunrise_data['results']['civil_twilight_begin']
+    sunrise_dict['civil_twilight_begin_time'] = nice_time(sunrise_dict['civil_twilight_begin'])
+
     sunrise_dict['sunrise'] = format_time(date_input,UTC_adjust,sunrise_data['results']['sunrise'])
-    sunrise_dict['sunrise_time'] = sunrise_data['results']['sunrise']
+    sunrise_dict['sunrise_time'] = nice_time(sunrise_dict['sunrise'])
+
     return sunrise_dict
 
 def forecast_me():
