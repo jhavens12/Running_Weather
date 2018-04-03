@@ -28,7 +28,7 @@ for n,day in enumerate(forecast_dict):
 
     build.title_labels(n,vis,ui,view_dict[q],title_label_list)
     #value_labels
-    #build.value_labels()
+    build.value_labels(n,vis,ui,view_dict[q],value_label_list)
 
 
 view.present(style='sheet', hide_title_bar=True)

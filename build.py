@@ -52,6 +52,8 @@ def vis(w,h,entry_count):
     vis['title_label_height'] = vis['other_label_height']
     vis['title_label_margins'] = 1
     #Value Labels
+    vis['value_label_x'] = vis['side_margin'] * 2
+    vis['value_label_y'] = vis['imageview_y'] + vis['imageview_height'] + (vis['other_label_height']/2)
     vis['value_label_width'] = vis['subview_width']-(vis['side_margin']*4)
     vis['value_label_height'] = vis['other_label_height']
     vis['value_label_margins'] = vis['title_label_margins']
@@ -126,4 +128,19 @@ def title_labels(n,vis,ui,view_name,title_label_list):
         label.font = ('<system>',12)
         label.number_of_lines = 1
         label.text = text
+        view_name.add_subview(label)
+
+def value_labels(n,vis,ui,view_name,value_label_list):
+    for x,text in enumerate(value_label_list):
+        adjusted_label_y = vis['value_label_y'] +( x*(vis['value_label_height']+vis['title_label_margins']) )
+        x = x+1
+        label_name = "vlabel"+view_number+str(x)
+        label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['value_label_x'], adjusted_label_y, vis['value_label_width'], vis['value_label_height']))
+        label.border_color = 'black'
+        label.text_color = 'white'
+        label.border_width = 0
+        label.alignment = 3 #1 is center, #0 is left justified
+        label.font = ('<system>',14)
+        label.number_of_lines = 1
+        label.text = str(text)
         view_name.add_subview(label)
