@@ -26,7 +26,7 @@ def twilight(date_input):
     except:
         print("error getting astro data")
     sunrise_dict['astronomical_twilight_begin_time'] = sunrise_data['results']['astronomical_twilight_begin']
-    sunrise_dict['astronomical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['astronomical_twilight_begin'])
+    sunrise_dict['astronomical_twilight_begin'] = nice_time(sunrise_dict['astronomical_twilight_begin_time'])
 
     sunrise_dict['nautical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['nautical_twilight_begin'])
     sunrise_dict['nautical_twilight_begin_time'] = nice_time(sunrise_dict['nautical_twilight_begin'])

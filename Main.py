@@ -77,7 +77,7 @@ for n,day in enumerate(forecast_dict):
     #label101 - 1 is view and 01 is label number
     title_label_list = ['Condition','Feels Like','% Percip','Actual Temp','Astro Twilight','Civil Twilight','Sunrise']
     title_label_x = side_margin
-    title_label_y = frame_y+frame_height+spacing_margin
+    title_label_y = frame_y+frame_height
     title_label_width = view_width-(side_margin*4)
     title_label_height = other_label_height
     label_margins = 1
@@ -100,7 +100,7 @@ for n,day in enumerate(forecast_dict):
     value_label_list.append(forecast_dict[day]['twilight']['sunrise_time'])
 
     value_label_x = side_margin*2
-    value_label_y = frame_y+frame_height+spacing_margin*2
+    value_label_y = frame_y+frame_height+spacing_margin
     value_label_width = view_width-(side_margin*4)
     value_label_height = other_label_height
     for x,text in enumerate(value_label_list):
