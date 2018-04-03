@@ -3,7 +3,7 @@ import ui
 
 
 w,h = ui.get_screen_size()
-view = ui.View(bg_color = 'lightyellow', frame = (0,0,w,h))
+view = ui.View(bg_color = 'white', frame = (0,0,w,h))
 
 side_margin = 5
 w = w-side_margin
@@ -43,7 +43,7 @@ for n,day in enumerate(forecast_dict):
 
     view_name = "view_"+str(n)
     view_number = str(n)
-    view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, h-top_margin), background_color='lightyellow')
+    view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, h-top_margin), background_color="#FC4C02")
     view_name.border_color = 'black'
     view_name.border_width = 1
 
@@ -75,7 +75,8 @@ for n,day in enumerate(forecast_dict):
 
     #working on title labels for data
     #label101 - 1 is view and 01 is label number
-    title_label_list = ['Condition','Feels Like','% Percip','Actual Temp','Astro Twilight','Civil Twilight','Sunrise']
+    title_label_list = ['Condition','Actual Temp','Feels Like','% Percip','Humidity','Astro Twilight','Nautical Twilight','Civil Twilight','Sunrise',\
+                        'Windspeed','Windchill']
     title_label_x = side_margin
     title_label_y = frame_y+frame_height
     title_label_width = view_width-(side_margin*4)
@@ -92,12 +93,16 @@ for n,day in enumerate(forecast_dict):
     #working on value labels
     value_label_list = []
     value_label_list.append(forecast_dict[day]['weather']['condition'])
+    value_label_list.append(forecast_dict[day]['weather']['temp']['english'])
     value_label_list.append(forecast_dict[day]['weather']['feelslike']['english'])
     value_label_list.append(forecast_dict[day]['weather']['pop'])
-    value_label_list.append(forecast_dict[day]['weather']['temp']['english'])
+    value_label_list.append(forecast_dict[day]['weather']['humidity'])
     value_label_list.append(forecast_dict[day]['twilight']['astronomical_twilight_begin_time'])
+    value_label_list.append(forecast_dict[day]['twilight']['nautical_twilight_begin_time'])
     value_label_list.append(forecast_dict[day]['twilight']['civil_twilight_begin_time'])
     value_label_list.append(forecast_dict[day]['twilight']['sunrise_time'])
+    value_label_list.append(forecast_dict[day]['weather']['wspd']['english'])
+    value_label_list.append(forecast_dict[day]['weather']['windchill']['english'])
 
     value_label_x = side_margin*2
     value_label_y = frame_y+frame_height+spacing_margin
