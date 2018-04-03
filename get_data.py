@@ -17,7 +17,10 @@ def format_time(date_input,UTC_adjust,time):
 def twilight(date_input):
     sunrise_dict = {}
     url = "https://api.sunrise-sunset.org/json?lat="+my_lat+"&lng="+my_long+"&date="+date_input
-    sunrise_data = requests.get(url).json()
+    try:
+        sunrise_data = requests.get(url).json()
+    except:
+        print("error getting astro data")
     sunrise_dict['astronomical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['astronomical_twilight_begin'])
     sunrise_dict['nautical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['nautical_twilight_begin'])
     sunrise_dict['civil_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['civil_twilight_begin'])
@@ -28,7 +31,10 @@ def forecast_me():
     forecast_dict = {}
     term = 'hourly10day'
     url = "http://api.wunderground.com/api/"+wu_key+"/"+term+"/q/VT/Essex.json"
-    hforecast = requests.get(url).json()
+    try:
+        hforecast = requests.get(url).json()
+    except:
+        print("error getting weather data")
 
     for hour in hforecast['hourly_forecast']:
         if hour['FCTTIME']['hour_padded'] == '05':# or hour['FCTTIME']['hour_padded'] == '17':

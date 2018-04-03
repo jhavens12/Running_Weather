@@ -17,10 +17,10 @@ forecast_dict = get_data.forecast_me()
 def create_label(label_name,label_x,label_y,label_width,label_height):
 
     #label_name = "label"+str(n)
-    label_name = ui.Label(name = label_name, bg_color ='white', frame = (label_x, label_y, label_width, label_height))
+    label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
     label_name.border_color = 'black'
     label_name.tint_color = 'black'
-    label_name.border_width = 1
+    label_name.border_width = 0
     label_name.alignment = 0 #1 is center, #0 is left justified
     label_name.font = ('<system>',12)
     label_name.number_of_lines = 1
@@ -38,7 +38,7 @@ for n,day in enumerate(forecast_dict):
     view_name.border_color = 'black'
     view_name.border_width = 1
 
-    #this creates the title labels
+    #this creates the title labels at the top of the page
     label_width = view_width-(side_margin*4)
     label_x = side_margin*2
     label_y = top_margin
@@ -63,7 +63,7 @@ for n,day in enumerate(forecast_dict):
     image_view_name.load_from_url(forecast_dict[day]['weather']['icon_url'])
     view_name.add_subview(image_view_name)
 
-    #working on title labels
+    #working on title labels for data
     #label101 - 1 is view and 01 is label number
     value_label_list = ['Condition','Feels Like','% Percip','Actual Temp','Astro Twilight','Civil Twilight','Sunrise']
     value_label_x = side_margin
