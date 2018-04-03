@@ -20,8 +20,15 @@ for n,day in enumerate(forecast_dict):
     header = build.headers(n,vis,ui,forecast_dict[day],view_dict[q]) #n, vis dict, ui object, day info, view_name
     view_dict[q].add_subview(header)
 
-    imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
-    view_dict[q].add_subview(imageview)
+    #the load from url option seems to be freezing every once in a while
+    #imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
+    #view_dict[q].add_subview(imageview)
+
+    title_label_list,value_label_list = build.title_and_values(forecast_dict[day])
+
+    build.title_labels(n,vis,ui,view_dict[q],title_label_list)
+    #value_labels
+    #build.value_labels()
 
 
 view.present(style='sheet', hide_title_bar=True)

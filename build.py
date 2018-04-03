@@ -24,6 +24,8 @@ def vis(w,h,entry_count):
     vis['imageview_width'] = vis['subview_width'] - (vis['side_margin'] *8)
     vis['imageview_height'] = vis['imageview_width']
     #Title Labels
+    vis['title_label_x'] = vis['side_margin']
+    vis['title_label_y'] = vis['imageview_y']+vis['imageview_height']
     vis['title_label_width'] = vis['subview_width']-(vis['side_margin']*4)
     vis['title_label_height'] = vis['other_label_height']
     vis['title_label_margins'] = 1
@@ -33,6 +35,26 @@ def vis(w,h,entry_count):
     vis['value_label_margins'] = vis['title_label_margins']
 
     return vis
+
+def titles_and_labels(day):
+    #put toogether dictionary of data we want to display based on forecast dict
+    title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
+                        'Nautical Twilight:','Civil Twilight:','Sunrise:','Windspeed:']
+
+    value_label_list = []
+    value_label_list.append(day['weather']['condition'])
+    value_label_list.append(day['weather']['temp']['english'])
+    value_label_list.append(day['weather']['feelslike']['english'])
+    value_label_list.append(day['weather']['windchill']['english'])
+    value_label_list.append(day['weather']['pop'])
+    value_label_list.append(day['weather']['humidity'])
+    value_label_list.append(day['twilight']['astronomical_twilight_begin_time'])
+    value_label_list.append(day['twilight']['nautical_twilight_begin_time'])
+    value_label_list.append(day['twilight']['civil_twilight_begin_time'])
+    value_label_list.append(day['twilight']['sunrise_time'])
+    value_label_list.append(day['weather']['wspd']['english'])
+
+    return title_label_list,value_label_list
 
 def subviews(n,vis,ui):
     subview_x = vis['side_margin'] + ( ( vis['w_adjusted'] / vis['entry_count'] ) *n) #this is dynamic
@@ -61,9 +83,19 @@ def headers(n,vis,ui,day,view_name):
 def imageview(n,vis,ui,day,view_name):
     #Image View
     image_view_name = "imageview"+str(n)
-    image_view_name = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
+    imageview = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
     imageview.load_from_url(day['weather']['icon_url'])
     imageview.border_width = 1
     imageview.border_color = "grey"
 
     return imageview
+
+def title_labels(n,vis,ui,view_name,title_label_list):
+
+    for x,text in enumerate(title_label_list):
+        adjusted_label_y = vis['title_label_y'] +( x*( vis['other_label_height'] + vis['title_label_margins'] ) )
+        x = x+1
+        label_name = "tlabel"+view_name+str(x)
+        label = create_title_label(label_name, vis['title_label_x'], adjusted_label_y, vis['title_label_width'], vis['title_label_height'])
+        label.text = text
+        view_name.add_subview(label)
