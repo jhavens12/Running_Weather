@@ -36,7 +36,7 @@ def forecast_me():
 
                 temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
                 temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
-                date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %I:%M:%S')
+                date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
 
                 forecast_dict[date_key] = {}
                 forecast_dict[date_key]['twilight'] = twilight(temp_date)

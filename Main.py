@@ -8,12 +8,14 @@ view = ui.View(bg_color = 'lightyellow', frame = (0,0,w,h))
 side_margin = 5
 w = w-side_margin
 top_margin = 20
+lblh = 64
 
 forecast_dict = get_data.forecast_me()
 
 for n,day in enumerate(forecast_dict):
-    view_x = side_margin+((w/3)*n)
-    view_width = (w/3)-side_margin
+    entry_count = len(forecast_dict)
+    view_x = side_margin+((w/entry_count)*n)
+    view_width = (w/entry_count)-side_margin
     n = n+1
     label_name = "label"+str(n)
     view_name = "view_"+str(n)
@@ -35,9 +37,5 @@ for n,day in enumerate(forecast_dict):
 
     view_name.add_subview(label_name)
     view.add_subview(view_name)
-
-
-# view.add_subview(view_2)
-# view.add_subview(view_3)
 
 view.present(style='sheet', hide_title_bar=True)
