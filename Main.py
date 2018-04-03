@@ -9,7 +9,7 @@ side_margin = 5
 w = w-side_margin
 top_margin = 20
 other_label_height = 32
-spacing_margin = 15
+spacing_margin = 10
 
 forecast_dict = get_data.forecast_me()
 
@@ -51,7 +51,7 @@ for n,day in enumerate(forecast_dict):
     header_label_width = view_width-(side_margin*4)
     header_label_height = 64 #title labels
     label_x = side_margin*2
-    label_y = top_margin
+    label_y = top_margin/2
     label_name = "label"+str(n)
     label_name = ui.Label(name = label_name, bg_color ='white', frame = (label_x, label_y, header_label_width, header_label_height))
     label_name.border_color = 'black'
@@ -65,7 +65,7 @@ for n,day in enumerate(forecast_dict):
 
     #image view from url
     frame_x = side_margin*4
-    frame_y = top_margin + header_label_height + spacing_margin
+    frame_y = label_y + header_label_height + spacing_margin
     frame_width = view_width-(side_margin*8)
     frame_height = frame_width
     image_view_name = "ImageView"+str(n)
