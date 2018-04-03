@@ -72,11 +72,13 @@ for n,day in enumerate(forecast_dict):
     image_view_name = "ImageView"+str(n)
     image_view_name = ui.ImageView(name=image_view_name, bg_color='white', frame=(frame_x, frame_y, frame_width, frame_height))
     image_view_name.load_from_url(forecast_dict[day]['weather']['icon_url'])
+    image_view_name.border_width = 1
+    image_view_name.border_color = "grey"
     view_name.add_subview(image_view_name)
 
     #working on title labels for data
-    title_label_list = ['Condition','Actual Temperature','Feels Like','Windchill','% Precipitation','Humidity','Astro Twilight',\
-                        'Nautical Twilight','Civil Twilight','Sunrise','Windspeed']
+    title_label_list = ['Condition:','Actual Temperature:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
+                        'Nautical Twilight:','Civil Twilight:','Sunrise:','Windspeed:']
     title_label_x = side_margin
     title_label_y = frame_y+frame_height
     title_label_width = view_width-(side_margin*4)
