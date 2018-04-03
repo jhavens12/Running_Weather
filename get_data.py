@@ -2,12 +2,33 @@ import credentials
 import requests
 from pprint import pprint
 import datetime
+import pickle
 
 wu_key = credentials.wu_key
 my_lat = credentials.my_lat
 my_long = credentials.my_long
 
 UTC_adjust = datetime.timedelta(hours=4)
+
+def open_file():
+    dictionary_file = Path('./History.dict')
+    if dictionary_file.is_file():
+        pickle_in = open(dictionary_file,"rb")
+        forecast_dict = pickle.load(pickle_in)
+    else:
+        f=open(dictionary_file,"w+") #create file
+        f.close()
+        forecast_dict = {}
+    return forecast_dict
+
+def close_file(forecast_dict):
+    forecast_dict[timestamp] = datetime.datetime.now()
+    dictionary_file = Path('./History.dict')
+    with open(dictionary_file, 'w') as outfile:
+        #json.dump(history_dict, outfile)
+        pickle_out = open(dictionary_file,"wb")
+        pickle.dump(forecast_dict, pickle_out) #save old_dict as it has all of the data
+        pickle_out.close()
 
 def format_time(date_input,UTC_adjust,time):
     temp_date = date_input+" "+time
@@ -41,27 +62,31 @@ def twilight(date_input):
     return sunrise_dict
 
 def forecast_me():
-    forecast_dict = {}
-    term = 'hourly10day'
-    url = "http://api.wunderground.com/api/"+wu_key+"/"+term+"/q/VT/Essex.json"
-    try:
-        hforecast = requests.get(url).json()
-    except:
-        print("error getting weather data")
-
-    for hour in hforecast['hourly_forecast']:
-        if hour['FCTTIME']['hour_padded'] == '05':# or hour['FCTTIME']['hour_padded'] == '17':
-            if hour['FCTTIME']['weekday_name'] == 'Tuesday' or hour['FCTTIME']['weekday_name'] == 'Thursday':
-
-                temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
-                temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
-                date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
-
-                forecast_dict[date_key] = {}
-                forecast_dict[date_key]['twilight'] = twilight(temp_date)
-                forecast_dict[date_key]['time'] = hour['FCTTIME']
-                del forecast_dict[date_key]['time']['UTCDATE']
-                forecast_dict[date_key]['weather'] = hour
-                del forecast_dict[date_key]['weather']['FCTTIME']
-
-    return forecast_dict
+    #forecast_dict = {}
+    forecast_dict = open_file()
+    timestamp = datetime.datetime.now()
+    if forecast_dict[timestamp] > timestamp-datetime.timedelta(hours=1):
+        print("Forecast dict is over an hour old, gathering new information")
+        forecast_dict = {} #reset the dictionary
+        term = 'hourly10day'
+        url = "http://api.wunderground.com/api/"+wu_key+"/"+term+"/q/VT/Essex.json"
+        try:
+            hforecast = requests.get(url).json()
+        except:
+            print("error getting weather data")
+        for hour in hforecast['hourly_forecast']:
+            if hour['FCTTIME']['hour_padded'] == '05':# or hour['FCTTIME']['hour_padded'] == '17':
+                if hour['FCTTIME']['weekday_name'] == 'Tuesday' or hour['FCTTIME']['weekday_name'] == 'Thursday':
+                    temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
+                    temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
+                    date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
+                    forecast_dict[date_key] = {}
+                    forecast_dict[date_key]['twilight'] = twilight(temp_date)
+                    forecast_dict[date_key]['time'] = hour['FCTTIME']
+                    del forecast_dict[date_key]['time']['UTCDATE']
+                    forecast_dict[date_key]['weather'] = hour
+                    del forecast_dict[date_key]['weather']['FCTTIME']
+        close_file(forecast_dict)
+        return forecast_dict
+    else:
+        return forecast_dict
