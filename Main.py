@@ -43,7 +43,7 @@ for n,day in enumerate(forecast_dict):
 
     view_name = "view_"+str(n)
     view_number = str(n)
-    view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, h-top_margin), background_color="#FC4C02")
+    view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, h-top_margin), background_color="#01B2FC")
     view_name.border_color = 'black'
     view_name.border_width = 1
 
