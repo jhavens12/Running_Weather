@@ -41,7 +41,7 @@ def forecast_me():
                 forecast_dict[date_key] = {}
                 forecast_dict[date_key]['twilight'] = twilight(temp_date)
                 forecast_dict[date_key]['time'] = hour['FCTTIME']
-                del forecast_dict[date_key]['weather']['UTCDATE']
+                del forecast_dict[date_key]['time']['UTCDATE']
                 forecast_dict[date_key]['weather'] = hour
                 del forecast_dict[date_key]['weather']['FCTTIME']
 
