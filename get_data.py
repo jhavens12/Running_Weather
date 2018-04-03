@@ -21,6 +21,7 @@ def open_file():
         f.close()
         forecast_dict = {}
         forecast_dict['timestamp'] = datetime.datetime(1900, 1, 1)
+
     return forecast_dict
 
 def close_file(forecast_dict):
@@ -67,8 +68,9 @@ def forecast_me():
     #forecast_dict = {}
     forecast_dict = open_file()
     current_timestamp = datetime.datetime.now()
-    if forecast_dict['timestamp'] > current_timestamp-datetime.timedelta(hours=1):
+    if forecast_dict['timestamp'] < current_timestamp-datetime.timedelta(hours=1):
         print("Forecast dict is over an hour old, gathering new information")
+
         forecast_dict = {} #reset the dictionary
         term = 'hourly10day'
         url = "http://api.wunderground.com/api/"+wu_key+"/"+term+"/q/VT/Essex.json"
