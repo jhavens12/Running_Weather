@@ -1,4 +1,4 @@
-import get_data
+title_labelimport get_data
 import ui
 
 
@@ -14,7 +14,7 @@ spacing_margin = 15
 
 forecast_dict = get_data.forecast_me()
 
-def create_label(label_name,label_x,label_y,label_width,label_height):
+def create_title_label(label_name,label_x,label_y,label_width,label_height):
 
     #label_name = "label"+str(n)
     label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
@@ -23,6 +23,16 @@ def create_label(label_name,label_x,label_y,label_width,label_height):
     label_name.border_width = 0
     label_name.alignment = 0 #1 is center, #0 is left justified
     label_name.font = ('<system>',12)
+    label_name.number_of_lines = 1
+    return label_name
+
+def create_value_label(label_name,label_x,label_y,label_width,label_height):
+    label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
+    label_name.border_color = 'black'
+    label_name.tint_color = 'green'
+    label_name.border_width = 0
+    label_name.alignment = 3 #1 is center, #0 is left justified
+    label_name.font = ('<system>',14)
     label_name.number_of_lines = 1
     return label_name
 
@@ -65,22 +75,43 @@ for n,day in enumerate(forecast_dict):
 
     #working on title labels for data
     #label101 - 1 is view and 01 is label number
-    value_label_list = ['Condition','Feels Like','% Percip','Actual Temp','Astro Twilight','Civil Twilight','Sunrise']
-    value_label_x = side_margin
-    value_label_y = frame_y+frame_height+spacing_margin
-    value_label_width = view_width-(side_margin*4)
-    value_label_height = other_label_height
+    title_label_list = ['Condition','Feels Like','% Percip','Actual Temp','Astro Twilight','Civil Twilight','Sunrise']
+    title_label_x = side_margin
+    title_label_y = frame_y+frame_height+spacing_margin
+    title_label_width = view_width-(side_margin*4)
+    title_label_height = other_label_height
     label_margins = 1
-    for x,text in enumerate(value_label_list):
+    for x,text in enumerate(title_label_list):
         x = x+1
-        adjusted_label_y = value_label_y +( x*(other_label_height+label_margins) )
-        label_name = "label"+view_number+str(x)
-        label_name = create_label(label_name, value_label_x, adjusted_label_y, value_label_width, value_label_height)
+        adjusted_label_y = title_label_y +( x*(other_label_height+label_margins) )
+        label_name = "tlabel"+view_number+str(x)
+        label_name = create_title_label(label_name, title_label_x, adjusted_label_y, title_label_width, title_label_height)
         label_name.text = text
         view_name.add_subview(label_name)
 
     #working on value labels
+    value_label_list = []
+    value_label_list.append(forecast_dict[day]['weather']['condition'])
+    value_label_list.append(forecast_dict[day]['weather']['feelslike'])
+    value_label_list.append(forecast_dict[day]['weather']['pop'])
+    value_label_list.append(forecast_dict[day]['weather']['temp']['english'])
+    value_label_list.append(forecast_dict[day]['twilight']['astronomical_twilight_begin'])
+    value_label_list.append(forecast_dict[day]['twilight']['civil_twilight_begin'])
+    value_label_list.append(forecast_dict[day]['twilight']['sunrise'])
+
+    value_label_x = side_margin*2
+    value_label_y = frame_y+frame_height+spacing_margin*2
+    value_label_width = view_width-(side_margin*4)
+    value_label_height = other_label_height
+    for x,text in enumerate(value_label_list):
+        x = x+1
+        adjusted_label_y = value_label_y +( x*(other_label_height+label_margins) )
+        label_name = "vlabel"+view_number+str(x)
+        label_name = create_value_label(label_name, value_label_x, adjusted_label_y, value_label_width, value_label_height)
+        label_name.text = text
+        view_name.add_subview(label_name)
 
     view.add_subview(view_name)
+
 
 view.present(style='sheet', hide_title_bar=True)
