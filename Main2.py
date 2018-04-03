@@ -168,16 +168,16 @@ view = ui.View(bg_color = 'white', frame = (0,0,w,h)) #main view
 forecast_dict = get_data.forecast_me() #get actual data
 
  #create dictionary of labels and values for display from dictionary
-vis = build_vis(w,h,dd,len(forecast_dict)) #build measurement dictionary to use
+vis = build_vis(w,h,len(forecast_dict)) #build measurement dictionary to use
 
 for n,day in enumerate(forecast_dict): #enumerate over data dictionary, each day is a cycle
     view_dictionary = {}
     dd = build_outputs(forecast_dict) #do i need to add more outputs or use forecast_dict?
     viewname = build_subviews(n,vis)
-    view_dictionary[n+1] = view_name #create dictionary for addressing views later
+    view_dictionary[n+1] = viewname #create dictionary for addressing views later
 
-    build_headers(n,forecast_dict[day],vis,view_name) #pass the day information
-    build_imageview(n,forecast_dict[day],vis,view_name)
+    build_headers(n,forecast_dict[day],vis,viewname) #pass the day information
+    build_imageview(n,forecast_dict[day],vis,viewname)
 
     #build_title_labels(n,forecast_dict[day],vis,dd)
     #build_view_labels(n,forecast_dict[day],vis,dd)
