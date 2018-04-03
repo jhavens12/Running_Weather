@@ -11,6 +11,8 @@ def vis(w,h,entry_count):
     #Subview
     vis['subview_width'] = (w/vis['entry_count'])-vis['side_margin']
     vis['subview_height'] = h-(vis['top_margin']*4)
+    vis['subview_y'] = vis['top_margin']
+    vis['subview_x'] = vis['side_margin']
     #Header
     vis['header_x'] = vis['side_margin'] * 2
     vis['header_y'] = vis['top_margin'] / 2
@@ -32,12 +34,26 @@ def vis(w,h,entry_count):
 
     return vis
 
-def subviews(n,vis):
+def subviews(n,vis,ui):
     subview_x = vis['side_margin'] + ( ( vis['w_adjusted'] / vis['entry_count'] ) *n) #this is dynamic
     n = n+1
     view_name = "view_"+str(n)
-    subview = ui.ScrollView(frame=(subview_x, vis['top_margin'], vis['subview_width'], vis['subview_height']), background_color="#01B2FC")
+    subview = ui.ScrollView(frame=(subview_x, vis['subview_y'], vis['subview_width'], vis['subview_height']), background_color="#01B2FC")
     subview.border_color = 'black'
     subview.border_width = 0
 
     return subview #return object
+
+def headers(n,vis,ui,day,view_name):
+    #Headers
+    label_name = "label"+str(n)
+    header = ui.Label(name = label_name, bg_color ='white', frame = (vis['header_x'], vis['header_y'], vis['header_width'], vis['header_height']))
+    header.border_color = 'black'
+    header.tint_color = 'black'
+    header.border_width = 1
+    header.alignment = 1 #1 is center, 0 is left justified
+    header.font = ('<system>',17)
+    header.number_of_lines = 3
+    header.text = day['time']['mon_abbrev']+" "+day['time']['mday']+" "+day['time']['weekday_name']+" "+day['time']['civil']
+
+    return header
