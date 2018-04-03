@@ -36,13 +36,12 @@ def create_value_label(label_name,label_x,label_y,label_width,label_height):
     return label_name
 
 for n,day in enumerate(forecast_dict):
+    #sub-views
     entry_count = len(forecast_dict)
     view_x = side_margin+((w/entry_count)*n)
     view_width = (w/entry_count)-side_margin
     view_height = h-(top_margin*4)
     n = n+1
-
-    #Sub-Views
     view_name = "view_"+str(n)
     view_number = str(n)
     view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, view_height), background_color="#01B2FC")
