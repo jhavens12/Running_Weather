@@ -21,7 +21,7 @@ def switch_pressed(self):
         view.add_subview(view_dict[new_view_name])
 
         #add back button with PM name
-        button = build.switch_buttons(int(view_number),new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
+        button = build.switch_buttons(int(view_number-1),new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
         button.action = switch_pressed
         view.add_subview(button)
 
@@ -35,7 +35,7 @@ def switch_pressed(self):
         view.add_subview(view_dict[new_view_name])
 
         #add back button with PM name
-        button = build.switch_buttons(int(view_number),new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
+        button = build.switch_buttons(int(view_number-1),new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
         button.action = switch_pressed
         view.add_subview(button)
 
