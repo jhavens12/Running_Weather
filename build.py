@@ -1,25 +1,3 @@
-
-# def create_title_label(label_name,label_x,label_y,label_width,label_height):
-#
-#     label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
-#     label_name.border_color = 'black'
-#     label_name.text_color = 'black'
-#     label_name.border_width = 0
-#     label_name.alignment = 0 #1 is center, #0 is left justified
-#     label_name.font = ('<system>',12)
-#     label_name.number_of_lines = 1
-#     return label_name
-#
-# def create_value_label(label_name,label_x,label_y,label_width,label_height):
-#     label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
-#     label_name.border_color = 'black'
-#     label_name.text_color = 'white'
-#     label_name.border_width = 0
-#     label_name.alignment = 3 #1 is center, #0 is left justified
-#     label_name.font = ('<system>',14)
-#     label_name.number_of_lines = 1
-#     return label_name
-
 def vis(w,h,entry_count):
 
     #Static Entries
@@ -57,6 +35,11 @@ def vis(w,h,entry_count):
     vis['value_label_width'] = vis['subview_width']-(vis['side_margin']*4)
     vis['value_label_height'] = vis['other_label_height']
     vis['value_label_margins'] = vis['title_label_margins']
+    #Buttons
+    vis['button_x'] = vis['header_width']
+    vis['button_y'] = vis['subview_height'] - 34
+    vis['button_width'] = vis['header_width']
+    vis['button_height'] = 32
 
     return vis
 
@@ -144,3 +127,18 @@ def value_labels(n,vis,ui,view_name,value_label_list):
         label.number_of_lines = 1
         label.text = str(text)
         view_name.add_subview(label)
+
+def switch_buttons(n,vis,ui,day):
+    #Buttons
+    button_name = "button"+str(n)
+    button = ui.Button(name = button_name, bg_color ='white', frame = (vis['button_x'], vis['button_y'], vis['button_width'], vis['button_height']))
+    button.border_color = 'black'
+    button.tint_color = 'blue
+    button.border_width = 1
+    button.alignment = 1 #1 is center, 0 is left justified
+    button.font = ('<system>',12)
+    button.number_of_lines = 1
+    button.text = "Test text"
+    button.title = "Test title"
+
+    return button

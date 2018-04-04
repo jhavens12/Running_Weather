@@ -33,6 +33,9 @@ def first_run(forecast_dict,view):
         #value_labels
         build.value_labels(n,vis,ui,view_dict[q],value_label_list)
 
+        button = build.switch_buttons(n,vis,ui,day)
+        view_dict[q].add_subview(button)
+
 first_run(forecast_dict,view)
 
 view.present(style='sheet', hide_title_bar=True)
