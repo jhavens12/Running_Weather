@@ -37,9 +37,10 @@ def vis(w,h,entry_count):
     vis['value_label_margins'] = vis['title_label_margins']
     #Buttons
     #vis['button_x'] = vis['header_x'] + vis['subview_x']#subviewx + header_x
+    vis['button_height'] = 32 #above button_y
     vis['button_y'] = vis['subview_height'] - vis['button_height'] - 5 #view height minus button height plus some
     vis['button_width'] = vis['header_width']
-    vis['button_height'] = 32
+
 
     return vis
 
