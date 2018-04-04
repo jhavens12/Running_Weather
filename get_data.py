@@ -79,6 +79,10 @@ def forecast_me():
             hforecast = requests.get(url).json()
         except:
             print("error getting weather data")
+
+        forecast_dict['PM'] = {}
+        forecast_dict['AM'] = {}
+        
         for hour in hforecast['hourly_forecast']:
             if hour['FCTTIME']['hour_padded'] == '05':# or hour['FCTTIME']['hour_padded'] == '17': AM
 
@@ -87,7 +91,7 @@ def forecast_me():
                     temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
                     temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
                     date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
-                    forecast_dict['AM'] = {}
+
                     forecast_dict['AM'][date_key] = {}
                     forecast_dict['AM'][date_key]['twilight'] = twilight(temp_date)
                     forecast_dict['AM'][date_key]['time'] = hour['FCTTIME']
@@ -102,7 +106,7 @@ def forecast_me():
                     temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
                     temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
                     date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
-                    forecast_dict['PM'] = {}
+
                     forecast_dict['PM'][date_key] = {}
                     forecast_dict['PM'][date_key]['twilight'] = twilight(temp_date)
                     forecast_dict['PM'][date_key]['time'] = hour['FCTTIME']
@@ -117,3 +121,5 @@ def forecast_me():
     else:
         del forecast_dict['timestamp'] #delete timestamp so it does not interfere
         return forecast_dict
+
+pprint(forecast_me())
