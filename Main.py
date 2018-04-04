@@ -8,23 +8,23 @@ view = ui.View(bg_color = 'white', frame = (0,0,w,h)) #main view
 
 forecast_dict = get_data.forecast_me() #get actual data
 
-vis = build.vis(w,h,len(forecast_dict['AM']))
+vis = build.vis(w,h,len(forecast_dict['PM']))
 #create view dictionary
 view_dict = {}
 
-for n,day in enumerate(forecast_dict['AM']):
+for n,day in enumerate(forecast_dict['PM']):
     q = n+1
     view_dict[q] = build.subviews(n,vis,ui) #build dictionary
     view.add_subview(view_dict[q]) #add subview to main view
 
-    header = build.headers(n,vis,ui,forecast_dict['AM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
+    header = build.headers(n,vis,ui,forecast_dict['PM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
     view_dict[q].add_subview(header)
 
     #the load from url option seems to be freezing every once in a while
     #imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
     #view_dict[q].add_subview(imageview)
 
-    title_label_list,value_label_list = build.titles_and_values(forecast_dict['AM'][day])
+    title_label_list,value_label_list = build.titles_and_values(forecast_dict['PM'][day])
 
     build.title_labels(n,vis,ui,view_dict[q],title_label_list)
     #value_labels
