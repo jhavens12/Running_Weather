@@ -45,7 +45,7 @@ def first_run(forecast_dict,view):
     #then add buttons
     #am views even, pm views odd?
     for c,data in enumerate(view_dict): #for each view, create button and add to main view
-        button = build.switch_buttons(str(data.name),vis,ui)
+        button = build.switch_buttons(c,data,vis,ui) #pass cycle number, view name(data), vis library and ui element
         button.action = switch_pressed
         view.add_subview(button) #each view gets a button
 
