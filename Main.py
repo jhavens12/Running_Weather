@@ -9,7 +9,7 @@ view = ui.View(bg_color = 'white', frame = (0,0,w,h)) #main view
 forecast_dict = get_data.forecast_me() #get actual data
 
 def switch_pressed(self):
-    print "Pressed "+self
+    print ("Pressed "+self)
 
 def first_run(forecast_dict,view):
     vis = build.vis(w,h,len(forecast_dict['AM']))
@@ -35,6 +35,7 @@ def first_run(forecast_dict,view):
         build.value_labels(n,vis,ui,view_dict[q],value_label_list)
 
         button = build.switch_buttons(n,vis,ui,day)
+        button.action = switch_pressed
         view_dict[q].add_subview(button)
 
 first_run(forecast_dict,view)

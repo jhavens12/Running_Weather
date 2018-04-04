@@ -141,8 +141,5 @@ def switch_buttons(n,vis,ui,day):
     button.font = ('<system>',12)
     button.number_of_lines = 1
     button.title = "AM/PM"
-    button.action = Main.switch_pressed
 
     return button
-
-def switch_press():
