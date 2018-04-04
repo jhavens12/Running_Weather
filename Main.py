@@ -9,7 +9,11 @@ view = ui.View(bg_color = 'white', frame = (0,0,w,h)) #main view
 forecast_dict = get_data.forecast_me() #get actual data
 
 def switch_pressed(self):
-    print ("Pressed "+self)
+    print ("Pressed "+self.name)
+    #get titles and labels based on PM
+    #figure out which subview has been pressed
+    #rebuild header, imagview, title labels and value labels
+
 
 def first_run(forecast_dict,view):
     vis = build.vis(w,h,len(forecast_dict['AM']))
@@ -34,9 +38,19 @@ def first_run(forecast_dict,view):
         #value_labels
         build.value_labels(n,vis,ui,view_dict[q],value_label_list)
 
+
+
+
+    #do the same as above for PM views, but do not display them until button press
+    #then add buttons
+    #am views even, pm views odd?
+    for c,view in enumerate(view_dict):
         button = build.switch_buttons(n,vis,ui,day)
         button.action = switch_pressed
-        view_dict[q].add_subview(button)
+        view_dict[view].add_subview(button) #each view gets a button
+
+    #for n,day in enumerate(forecast_dict['PM']):
+
 
 first_run(forecast_dict,view)
 

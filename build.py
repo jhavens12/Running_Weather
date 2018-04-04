@@ -1,5 +1,3 @@
-import Main
-
 def vis(w,h,entry_count):
 
     #Static Entries
@@ -38,8 +36,8 @@ def vis(w,h,entry_count):
     vis['value_label_height'] = vis['other_label_height']
     vis['value_label_margins'] = vis['title_label_margins']
     #Buttons
-    vis['button_x'] = vis['header_x']
-    vis['button_y'] = vis['subview_height'] - 34
+    #vis['button_x'] = vis['header_x'] + vis['subview_x']#subviewx + header_x
+    vis['button_y'] = vis['subview_height'] - vis['button_height'] - 5 #view height minus button height plus some
     vis['button_width'] = vis['header_width']
     vis['button_height'] = 32
 
@@ -132,8 +130,10 @@ def value_labels(n,vis,ui,view_name,value_label_list):
 
 def switch_buttons(n,vis,ui,day):
     #Buttons
-    button_name = "button"+str(n)
-    button = ui.Button(name = button_name, bg_color ='white', frame = (vis['button_x'], vis['button_y'], vis['button_width'], vis['button_height']))
+    button_x = vis['header_x'] + vis['side_margin'] + ( ( vis['w_adjusted'] / vis['entry_count'] ) *n) #has to be dynamic
+    n = n+1
+    button_name = "button_"+str(n)
+    button = ui.Button(name = button_name, bg_color ='white', frame = (button_x, vis['button_y'], vis['button_width'], vis['button_height']))
     button.border_color = 'black'
     button.tint_color = 'blue'
     button.border_width = 1
