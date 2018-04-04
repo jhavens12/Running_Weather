@@ -1,6 +1,7 @@
 import get_data
 import ui
 import build
+from pprint import pprint
 
 
 w,h = ui.get_screen_size()
@@ -48,22 +49,16 @@ def first_run(forecast_dict,view):
         header = build.headers(n,vis,ui,forecast_dict['PM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
         view_dict[q].add_subview(header)
 
-        #the load from url option seems to be freezing every once in a while
-        #imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
-        #view_dict[q].add_subview(imageview)
-
         title_label_list,value_label_list = build.PM_titles_and_values(forecast_dict['PM'][day])
 
         build.title_labels(n,vis,ui,view_dict[q],title_label_list)
-        #value_labels
         build.value_labels(n,vis,ui,view_dict[q],value_label_list)
 
-    pprint(view_dict)
-
-    # for c,data in enumerate(view_dict): #for each view, create button and add to main view
-    #     button = build.switch_buttons(c,data,vis,ui) #pass cycle number, view name(data), vis library and ui element
-    #     button.action = switch_pressed
-    #     view.add_subview(button) #each view gets a button
+    for c,subview in enumerate(view_dict): #for each view, create button and add to main view
+        if subview contains "AM":
+            button = build.switch_buttons(c,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
+            button.action = switch_pressed
+            view.add_subview(button) #each view gets a button
 
 
 
