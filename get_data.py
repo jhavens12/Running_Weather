@@ -87,6 +87,7 @@ def forecast_me():
                     temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
                     temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
                     date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
+                    forecast_dict['AM'] = {}
                     forecast_dict['AM'][date_key] = {}
                     forecast_dict['AM'][date_key]['twilight'] = twilight(temp_date)
                     forecast_dict['AM'][date_key]['time'] = hour['FCTTIME']
@@ -101,6 +102,7 @@ def forecast_me():
                     temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
                     temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
                     date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
+                    forecast_dict['PM'] = {}
                     forecast_dict['PM'][date_key] = {}
                     forecast_dict['PM'][date_key]['twilight'] = twilight(temp_date)
                     forecast_dict['PM'][date_key]['time'] = hour['FCTTIME']

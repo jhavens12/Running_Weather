@@ -12,7 +12,7 @@ vis = build.vis(w,h,len(forecast_dict['AM']))
 #create view dictionary
 view_dict = {}
 
-for n,day in enumerate(forecast_dict['AM'):
+for n,day in enumerate(forecast_dict['AM']):
     q = n+1
     view_dict[q] = build.subviews(n,vis,ui) #build dictionary
     view.add_subview(view_dict[q]) #add subview to main view
