@@ -44,7 +44,7 @@ def vis(w,h,entry_count):
 
     return vis
 
-def titles_and_values(day):
+def AM_titles_and_values(day):
     #put toogether dictionary of data we want to display based on forecast dict
     title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
                         'Nautical Twilight:','Civil Twilight:','Sunrise:','Windspeed:']
@@ -60,6 +60,26 @@ def titles_and_values(day):
     value_label_list.append(day['twilight']['nautical_twilight_begin_time'])
     value_label_list.append(day['twilight']['civil_twilight_begin_time'])
     value_label_list.append(day['twilight']['sunrise_time'])
+    value_label_list.append(day['weather']['wspd']['english'])
+
+    return title_label_list,value_label_list
+
+def PM_titles_and_values(day):
+    #put toogether dictionary of data we want to display based on forecast dict
+    title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
+                        'Nautical Twilight:','Civil Twilight:','Sunset:','Windspeed:']
+
+    value_label_list = []
+    value_label_list.append(day['weather']['condition'])
+    value_label_list.append(day['weather']['temp']['english'])
+    value_label_list.append(day['weather']['feelslike']['english'])
+    value_label_list.append(day['weather']['windchill']['english'])
+    value_label_list.append(day['weather']['pop'])
+    value_label_list.append(day['weather']['humidity'])
+    value_label_list.append(day['twilight']['astronomical_twilight_end_time'])
+    value_label_list.append(day['twilight']['nautical_twilight_end_time'])
+    value_label_list.append(day['twilight']['civil_twilight_end_time'])
+    value_label_list.append(day['twilight']['sunset_time'])
     value_label_list.append(day['weather']['wspd']['english'])
 
     return title_label_list,value_label_list

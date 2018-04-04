@@ -33,21 +33,37 @@ def first_run(forecast_dict,view):
         #imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
         #view_dict[q].add_subview(imageview)
 
-        title_label_list,value_label_list = build.titles_and_values(forecast_dict['AM'][day])
+        title_label_list,value_label_list = build.AM_titles_and_values(forecast_dict['AM'][day])
 
         build.title_labels(n,vis,ui,view_dict[q],title_label_list)
         #value_labels
         build.value_labels(n,vis,ui,view_dict[q],value_label_list)
 
-    #for n,day in enumerate(forecast_dict['PM']):
+    for n,day in enumerate(forecast_dict['PM']):
+        d = n+1
+        q = 'PM_'+str(d)
+        view_dict[q] = build.subviews(n,vis,ui) #build dictionary
+        #view.add_subview(view_dict[q]) #add subview to main view
 
-    #do the same as above for PM views, but do not display them until button press
-    #then add buttons
-    #am views even, pm views odd?
-    for c,data in enumerate(view_dict): #for each view, create button and add to main view
-        button = build.switch_buttons(c,data,vis,ui) #pass cycle number, view name(data), vis library and ui element
-        button.action = switch_pressed
-        view.add_subview(button) #each view gets a button
+        header = build.headers(n,vis,ui,forecast_dict['PM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
+        view_dict[q].add_subview(header)
+
+        #the load from url option seems to be freezing every once in a while
+        #imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
+        #view_dict[q].add_subview(imageview)
+
+        title_label_list,value_label_list = build.PM_titles_and_values(forecast_dict['PM'][day])
+
+        build.title_labels(n,vis,ui,view_dict[q],title_label_list)
+        #value_labels
+        build.value_labels(n,vis,ui,view_dict[q],value_label_list)
+
+    pprint(view_dict)
+
+    # for c,data in enumerate(view_dict): #for each view, create button and add to main view
+    #     button = build.switch_buttons(c,data,vis,ui) #pass cycle number, view name(data), vis library and ui element
+    #     button.action = switch_pressed
+    #     view.add_subview(button) #each view gets a button
 
 
 
