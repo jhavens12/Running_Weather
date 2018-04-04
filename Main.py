@@ -11,8 +11,8 @@ forecast_dict = get_data.forecast_me() #get actual data
 
 def switch_pressed(self):
     print ("Pressed "+self.name)
-    if "AM" in self.name:
-        print("Button pressed and AM displayed")
+    if "AM" in self.name: #passed name like button_AM1
+        #print("Button pressed and AM displayed")
         view_name = self.name.replace("button_","")
         view_number = view_name.replace("AM","")
         new_view_name = "PM"+view_number
@@ -26,7 +26,7 @@ def switch_pressed(self):
         view.add_subview(button)
 
     if "PM" in self.name:
-        print("Button pressed and PM displayed")
+        #print("Button pressed and PM displayed")
         view_name = self.name.replace("button_","")
         view_number = view_name.replace("PM","")
         new_view_name = "AM"+view_number
@@ -38,8 +38,6 @@ def switch_pressed(self):
         button = build.switch_buttons(int(view_number),new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
         button.action = switch_pressed
         view.add_subview(button)
-
-
 
 def first_run(forecast_dict,view):
     global vis
@@ -63,15 +61,14 @@ def first_run(forecast_dict,view):
 
         title_label_list,value_label_list = build.AM_titles_and_values(forecast_dict['AM'][day])
 
-        build.title_labels(n,vis,ui,view_dict[q],title_label_list)
-        #value_labels
-        build.value_labels(n,vis,ui,view_dict[q],value_label_list)
+        build.title_labels(n,vis,ui,view_dict[q],title_label_list,'AM')
+        build.value_labels(n,vis,ui,view_dict[q],value_label_list,'AM')
 
     for n,day in enumerate(forecast_dict['PM']):
         d = n+1
         q = 'PM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
-        view_dict[q].background_color = "darkblue" #change for PM
+        view_dict[q].background_color = "#0952c6" #change for PM
         #view.add_subview(view_dict[q]) #add subview to main view
 
         header = build.headers(n,vis,ui,forecast_dict['PM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
@@ -79,8 +76,8 @@ def first_run(forecast_dict,view):
 
         title_label_list,value_label_list = build.PM_titles_and_values(forecast_dict['PM'][day])
 
-        build.title_labels(n,vis,ui,view_dict[q],title_label_list)
-        build.value_labels(n,vis,ui,view_dict[q],value_label_list)
+        build.title_labels(n,vis,ui,view_dict[q],title_label_list,'PM')
+        build.value_labels(n,vis,ui,view_dict[q],value_label_list,'PM')
 
     for c,subview in enumerate(view_dict): #for each view, create button and add to main view
         if "AM" in subview:

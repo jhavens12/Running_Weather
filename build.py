@@ -66,8 +66,8 @@ def AM_titles_and_values(day):
 
 def PM_titles_and_values(day):
     #put toogether dictionary of data we want to display based on forecast dict
-    title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
-                        'Nautical Twilight:','Civil Twilight:','Sunset:','Windspeed:']
+    title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Sunset:',\
+                        'Civil Twilight:','Nautical Twilight:','Astro Twilight:','Windspeed:']
 
     value_label_list = []
     value_label_list.append(day['weather']['condition'])
@@ -76,10 +76,10 @@ def PM_titles_and_values(day):
     value_label_list.append(day['weather']['windchill']['english'])
     value_label_list.append(day['weather']['pop'])
     value_label_list.append(day['weather']['humidity'])
-    value_label_list.append(day['twilight']['astronomical_twilight_end_time'])
-    value_label_list.append(day['twilight']['nautical_twilight_end_time'])
-    value_label_list.append(day['twilight']['civil_twilight_end_time'])
     value_label_list.append(day['twilight']['sunset_time'])
+    value_label_list.append(day['twilight']['civil_twilight_end_time'])
+    value_label_list.append(day['twilight']['nautical_twilight_end_time'])
+    value_label_list.append(day['twilight']['astronomical_twilight_end_time'])
     value_label_list.append(day['weather']['wspd']['english'])
 
     return title_label_list,value_label_list
@@ -119,7 +119,7 @@ def imageview(n,vis,ui,day,view_name):
 
     return imageview
 
-def title_labels(n,vis,ui,view_name,title_label_list):
+def title_labels(n,vis,ui,view_name,title_label_list,timeset):
 
     for x,text in enumerate(title_label_list):
         adjusted_label_y = vis['title_label_y'] +( x*( vis['other_label_height'] + vis['title_label_margins'] ) )
@@ -127,7 +127,10 @@ def title_labels(n,vis,ui,view_name,title_label_list):
         label_name = "tlabel"+str(view_name)+str(x)
         label = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['title_label_x'], adjusted_label_y, vis['title_label_width'], vis['title_label_height']))
         label.border_color = 'black'
-        label.text_color = 'black'
+        if timeset == 'AM':
+            label.text_color = 'black'
+        if timest == 'PM':
+            label.text_color = 'white'
         label.border_width = 0
         label.alignment = 0 #1 is center, #0 is left justified
         label.font = ('<system>',12)
@@ -135,14 +138,17 @@ def title_labels(n,vis,ui,view_name,title_label_list):
         label.text = text
         view_name.add_subview(label)
 
-def value_labels(n,vis,ui,view_name,value_label_list):
+def value_labels(n,vis,ui,view_name,value_label_list,timeset):
     for x,text in enumerate(value_label_list):
         adjusted_label_y = vis['value_label_y'] +( x*(vis['value_label_height']+vis['title_label_margins']) )
         x = x+1
         label_name = "vlabel"+str(view_name)+str(x)
         label = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['value_label_x'], adjusted_label_y, vis['value_label_width'], vis['value_label_height']))
         label.border_color = 'black'
-        label.text_color = 'white'
+        if timeset == 'AM':
+            label.text_color = 'black'
+        if timest == 'PM':
+            label.text_color = 'white'
         label.border_width = 0
         label.alignment = 3 #1 is center, #0 is left justified
         label.font = ('<system>',14)
