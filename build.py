@@ -1,3 +1,5 @@
+import Main
+
 def vis(w,h,entry_count):
 
     #Static Entries
@@ -36,7 +38,7 @@ def vis(w,h,entry_count):
     vis['value_label_height'] = vis['other_label_height']
     vis['value_label_margins'] = vis['title_label_margins']
     #Buttons
-    vis['button_x'] = vis['header_width']
+    vis['button_x'] = vis['header_x']
     vis['button_y'] = vis['subview_height'] - 34
     vis['button_width'] = vis['header_width']
     vis['button_height'] = 32
@@ -133,12 +135,14 @@ def switch_buttons(n,vis,ui,day):
     button_name = "button"+str(n)
     button = ui.Button(name = button_name, bg_color ='white', frame = (vis['button_x'], vis['button_y'], vis['button_width'], vis['button_height']))
     button.border_color = 'black'
-    button.tint_color = 'blue
+    button.tint_color = 'blue'
     button.border_width = 1
     button.alignment = 1 #1 is center, 0 is left justified
     button.font = ('<system>',12)
     button.number_of_lines = 1
-    button.text = "Test text"
-    button.title = "Test title"
+    button.title = "AM/PM"
+    button.action = Main.switch_pressed
 
     return button
+
+def switch_press():

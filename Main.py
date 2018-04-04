@@ -8,7 +8,8 @@ view = ui.View(bg_color = 'white', frame = (0,0,w,h)) #main view
 
 forecast_dict = get_data.forecast_me() #get actual data
 
-
+def switch_pressed(self):
+    print "Pressed "+self
 
 def first_run(forecast_dict,view):
     vis = build.vis(w,h,len(forecast_dict['AM']))
