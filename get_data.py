@@ -41,7 +41,7 @@ def format_time(date_input,UTC_adjust,time):
 
 def nice_time(time):
     #return str(time.hour)+":"+str(time.minute)+":"+str(time.second)
-    return str(time.time().strftime("%H:%M:%S"))
+    return str(time.time().strftime("%I:%M:%S"))
 
 def twilight(date_input):
     sunrise_dict = {}
@@ -53,15 +53,23 @@ def twilight(date_input):
 
     sunrise_dict['astronomical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['astronomical_twilight_begin'])
     sunrise_dict['astronomical_twilight_begin_time'] = nice_time(sunrise_dict['astronomical_twilight_begin'])
+    sunrise_dict['astronomical_twilight_end'] = format_time(date_input,UTC_adjust,sunrise_data['results']['astronomical_twilight_end'])
+    sunrise_dict['astronomical_twilight_end_time'] = nice_time(sunrise_dict['astronomical_twilight_end'])
 
     sunrise_dict['nautical_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['nautical_twilight_begin'])
     sunrise_dict['nautical_twilight_begin_time'] = nice_time(sunrise_dict['nautical_twilight_begin'])
+    sunrise_dict['nautical_twilight_end'] = format_time(date_input,UTC_adjust,sunrise_data['results']['nautical_twilight_end'])
+    sunrise_dict['nautical_twilight_end_time'] = nice_time(sunrise_dict['nautical_twilight_end'])
 
     sunrise_dict['civil_twilight_begin'] = format_time(date_input,UTC_adjust,sunrise_data['results']['civil_twilight_begin'])
     sunrise_dict['civil_twilight_begin_time'] = nice_time(sunrise_dict['civil_twilight_begin'])
+    sunrise_dict['civil_twilight_end'] = format_time(date_input,UTC_adjust,sunrise_data['results']['civil_twilight_end'])
+    sunrise_dict['civil_twilight_end_time'] = nice_time(sunrise_dict['civil_twilight_end'])
 
     sunrise_dict['sunrise'] = format_time(date_input,UTC_adjust,sunrise_data['results']['sunrise'])
     sunrise_dict['sunrise_time'] = nice_time(sunrise_dict['sunrise'])
+    sunrise_dict['sunset'] = format_time(date_input,UTC_adjust,sunrise_data['results']['sunset'])
+    sunrise_dict['sunset_time'] = nice_time(sunrise_dict['sunset'])
 
     return sunrise_dict
 
