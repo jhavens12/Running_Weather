@@ -1,24 +1,24 @@
 
-def create_title_label(label_name,label_x,label_y,label_width,label_height):
-
-    label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
-    label_name.border_color = 'black'
-    label_name.text_color = 'black'
-    label_name.border_width = 0
-    label_name.alignment = 0 #1 is center, #0 is left justified
-    label_name.font = ('<system>',12)
-    label_name.number_of_lines = 1
-    return label_name
-
-def create_value_label(label_name,label_x,label_y,label_width,label_height):
-    label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
-    label_name.border_color = 'black'
-    label_name.text_color = 'white'
-    label_name.border_width = 0
-    label_name.alignment = 3 #1 is center, #0 is left justified
-    label_name.font = ('<system>',14)
-    label_name.number_of_lines = 1
-    return label_name
+# def create_title_label(label_name,label_x,label_y,label_width,label_height):
+#
+#     label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
+#     label_name.border_color = 'black'
+#     label_name.text_color = 'black'
+#     label_name.border_width = 0
+#     label_name.alignment = 0 #1 is center, #0 is left justified
+#     label_name.font = ('<system>',12)
+#     label_name.number_of_lines = 1
+#     return label_name
+#
+# def create_value_label(label_name,label_x,label_y,label_width,label_height):
+#     label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
+#     label_name.border_color = 'black'
+#     label_name.text_color = 'white'
+#     label_name.border_width = 0
+#     label_name.alignment = 3 #1 is center, #0 is left justified
+#     label_name.font = ('<system>',14)
+#     label_name.number_of_lines = 1
+#     return label_name
 
 def vis(w,h,entry_count):
 

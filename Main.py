@@ -1,124 +1,34 @@
 import get_data
 import ui
+import build
 
 
 w,h = ui.get_screen_size()
-view = ui.View(bg_color = 'white', frame = (0,0,w,h))
+view = ui.View(bg_color = 'white', frame = (0,0,w,h)) #main view
 
-side_margin = 5
-w = w-side_margin
-top_margin = 20
-other_label_height = 32
-spacing_margin = 10
+forecast_dict = get_data.forecast_me() #get actual data
 
-forecast_dict = get_data.forecast_me()
+vis = build.vis(w,h,len(forecast_dict['AM']))
+#create view dictionary
+view_dict = {}
 
-def create_title_label(label_name,label_x,label_y,label_width,label_height):
+for n,day in enumerate(forecast_dict['AM'):
+    q = n+1
+    view_dict[q] = build.subviews(n,vis,ui) #build dictionary
+    view.add_subview(view_dict[q]) #add subview to main view
 
-    #label_name = "label"+str(n)
-    label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
-    label_name.border_color = 'black'
-    label_name.text_color = 'black'
-    label_name.border_width = 0
-    label_name.alignment = 0 #1 is center, #0 is left justified
-    label_name.font = ('<system>',12)
-    label_name.number_of_lines = 1
-    return label_name
+    header = build.headers(n,vis,ui,forecast_dict['AM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
+    view_dict[q].add_subview(header)
 
-def create_value_label(label_name,label_x,label_y,label_width,label_height):
-    label_name = ui.Label(name = label_name, bg_color ='transparent', frame = (label_x, label_y, label_width, label_height))
-    label_name.border_color = 'black'
-    label_name.text_color = 'white'
-    label_name.border_width = 0
-    label_name.alignment = 3 #1 is center, #0 is left justified
-    label_name.font = ('<system>',14)
-    label_name.number_of_lines = 1
-    return label_name
+    #the load from url option seems to be freezing every once in a while
+    #imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
+    #view_dict[q].add_subview(imageview)
 
-for n,day in enumerate(forecast_dict):
-    #sub-views
-    entry_count = len(forecast_dict)
-    view_x = side_margin+((w/entry_count)*n)
-    view_width = (w/entry_count)-side_margin
-    view_height = h-(top_margin*4)
-    n = n+1
-    view_name = "view_"+str(n)
-    view_number = str(n)
-    view_name = ui.ScrollView(frame=(view_x, top_margin, view_width, view_height), background_color="#01B2FC")
-    view_name.border_color = 'black'
-    view_name.border_width = 0
+    title_label_list,value_label_list = build.titles_and_values(forecast_dict['AM'][day])
 
-    #Headers
-    header_label_width = view_width-(side_margin*4)
-    header_label_height = 64 #title labels
-    label_x = side_margin*2
-    label_y = top_margin/2
-    label_name = "label"+str(n)
-    label_name = ui.Label(name = label_name, bg_color ='white', frame = (label_x, label_y, header_label_width, header_label_height))
-    label_name.border_color = 'black'
-    label_name.tint_color = 'black'
-    label_name.border_width = 1
-    label_name.alignment = 1 #1 is center, 0 is left justified
-    label_name.font = ('<system>',17)
-    label_name.number_of_lines = 3
-    label_name.text = forecast_dict[day]['time']['mon_abbrev']+" "+forecast_dict[day]['time']['mday']+" "+forecast_dict[day]['time']['weekday_name']+" "+forecast_dict[day]['time']['civil']
-    view_name.add_subview(label_name)
-
-    #Image View
-    frame_x = side_margin*4
-    frame_y = label_y + header_label_height + spacing_margin
-    frame_width = view_width-(side_margin*8)
-    frame_height = frame_width
-    image_view_name = "ImageView"+str(n)
-    image_view_name = ui.ImageView(name=image_view_name, bg_color='white', frame=(frame_x, frame_y, frame_width, frame_height))
-    image_view_name.load_from_url(forecast_dict[day]['weather']['icon_url'])
-    image_view_name.border_width = 1
-    image_view_name.border_color = "grey"
-    view_name.add_subview(image_view_name)
-
-    #Title Labels
-    title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
-                        'Nautical Twilight:','Civil Twilight:','Sunrise:','Windspeed:']
-    title_label_x = side_margin
-    title_label_y = frame_y+frame_height
-    title_label_width = view_width-(side_margin*4)
-    title_label_height = other_label_height
-    label_margins = 1
-    for x,text in enumerate(title_label_list):
-        adjusted_label_y = title_label_y +( x*(other_label_height+label_margins) )
-        x = x+1
-        label_name = "tlabel"+view_number+str(x)
-        label_name = create_title_label(label_name, title_label_x, adjusted_label_y, title_label_width, title_label_height)
-        label_name.text = text
-        view_name.add_subview(label_name)
-
-    #Value Labels
-    value_label_list = []
-    value_label_list.append(forecast_dict[day]['weather']['condition'])
-    value_label_list.append(forecast_dict[day]['weather']['temp']['english'])
-    value_label_list.append(forecast_dict[day]['weather']['feelslike']['english'])
-    value_label_list.append(forecast_dict[day]['weather']['windchill']['english'])
-    value_label_list.append(forecast_dict[day]['weather']['pop'])
-    value_label_list.append(forecast_dict[day]['weather']['humidity'])
-    value_label_list.append(forecast_dict[day]['twilight']['astronomical_twilight_begin_time'])
-    value_label_list.append(forecast_dict[day]['twilight']['nautical_twilight_begin_time'])
-    value_label_list.append(forecast_dict[day]['twilight']['civil_twilight_begin_time'])
-    value_label_list.append(forecast_dict[day]['twilight']['sunrise_time'])
-    value_label_list.append(forecast_dict[day]['weather']['wspd']['english'])
-
-    value_label_x = side_margin*2
-    value_label_y = frame_y+frame_height+(other_label_height/2)
-    value_label_width = view_width-(side_margin*4)
-    value_label_height = other_label_height
-    for x,text in enumerate(value_label_list):
-        adjusted_label_y = value_label_y +( x*(other_label_height+label_margins) )
-        x = x+1
-        label_name = "vlabel"+view_number+str(x)
-        label_name = create_value_label(label_name, value_label_x, adjusted_label_y, value_label_width, value_label_height)
-        label_name.text = str(text)
-        view_name.add_subview(label_name)
-
-    view.add_subview(view_name)
+    build.title_labels(n,vis,ui,view_dict[q],title_label_list)
+    #value_labels
+    build.value_labels(n,vis,ui,view_dict[q],value_label_list)
 
 
 view.present(style='sheet', hide_title_bar=True)

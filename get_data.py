@@ -80,17 +80,33 @@ def forecast_me():
         except:
             print("error getting weather data")
         for hour in hforecast['hourly_forecast']:
-            if hour['FCTTIME']['hour_padded'] == '05':# or hour['FCTTIME']['hour_padded'] == '17':
+            if hour['FCTTIME']['hour_padded'] == '05':# or hour['FCTTIME']['hour_padded'] == '17': AM
+
                 if hour['FCTTIME']['weekday_name'] == 'Tuesday' or hour['FCTTIME']['weekday_name'] == 'Thursday':
+
                     temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
                     temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
                     date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
-                    forecast_dict[date_key] = {}
-                    forecast_dict[date_key]['twilight'] = twilight(temp_date)
-                    forecast_dict[date_key]['time'] = hour['FCTTIME']
-                    del forecast_dict[date_key]['time']['UTCDATE']
-                    forecast_dict[date_key]['weather'] = hour
-                    del forecast_dict[date_key]['weather']['FCTTIME']
+                    forecast_dict['AM'][date_key] = {}
+                    forecast_dict['AM'][date_key]['twilight'] = twilight(temp_date)
+                    forecast_dict['AM'][date_key]['time'] = hour['FCTTIME']
+                    del forecast_dict['AM'][date_key]['time']['UTCDATE']
+                    forecast_dict['AM'][date_key]['weather'] = hour
+                    del forecast_dict['AM'][date_key]['weather']['FCTTIME']
+
+            if hour['FCTTIME']['hour_padded'] == '17':# or hour['FCTTIME']['hour_padded'] == '17': PM
+
+                if hour['FCTTIME']['weekday_name'] == 'Tuesday' or hour['FCTTIME']['weekday_name'] == 'Thursday':
+
+                    temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
+                    temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
+                    date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
+                    forecast_dict['PM'][date_key] = {}
+                    forecast_dict['PM'][date_key]['twilight'] = twilight(temp_date)
+                    forecast_dict['PM'][date_key]['time'] = hour['FCTTIME']
+                    del forecast_dict['PM'][date_key]['time']['UTCDATE']
+                    forecast_dict['PM'][date_key]['weather'] = hour
+                    del forecast_dict['PM'][date_key]['weather']['FCTTIME']
 
         close_file(forecast_dict) #save the dictionary
         del forecast_dict['timestamp'] #delete timestamp after saving, before passing along
