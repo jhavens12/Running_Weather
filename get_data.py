@@ -91,9 +91,9 @@ def forecast_me():
                     forecast_dict['AM'][date_key] = {}
                     forecast_dict['AM'][date_key]['twilight'] = twilight(temp_date)
                     forecast_dict['AM'][date_key]['time'] = hour['FCTTIME']
-                    del forecast_dict['AM'][date_key]['time']['UTCDATE']
+                    #del forecast_dict['AM'][date_key]['time']['UTCDATE']
                     forecast_dict['AM'][date_key]['weather'] = hour
-                    del forecast_dict['AM'][date_key]['weather']['FCTTIME']
+                    #del forecast_dict['AM'][date_key]['weather']['FCTTIME']
 
             if hour['FCTTIME']['hour_padded'] == '17':
 
@@ -106,9 +106,9 @@ def forecast_me():
                     forecast_dict['PM'][date_key] = {}
                     forecast_dict['PM'][date_key]['twilight'] = twilight(temp_date)
                     forecast_dict['PM'][date_key]['time'] = hour['FCTTIME']
-                    del forecast_dict['PM'][date_key]['time']['UTCDATE']
+                    #del forecast_dict['PM'][date_key]['time']['UTCDATE']
                     forecast_dict['PM'][date_key]['weather'] = hour
-                    del forecast_dict['PM'][date_key]['weather']['FCTTIME']
+                    #del forecast_dict['PM'][date_key]['weather']['FCTTIME']
 
         close_file(forecast_dict) #save the dictionary
         del forecast_dict['timestamp'] #delete timestamp after saving, before passing along
