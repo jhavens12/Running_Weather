@@ -14,8 +14,10 @@ def switch_pressed(self):
     if "AM" in self.name:
         print("Button pressed and AM displayed")
         view_name = self.name.replace("button_","")
-        print(view_name)
-        view.remove_subview(view_name)
+        view_number = view_name.replace("AM","")
+        new_view_name = "PM"+view_number
+        view.remove_subview(view_dict[view_name]) #view_dict contains names as keys and view objects as values
+        view.add_subview(view_dict[new_view_name])
     #get titles and labels based on PM
     #figure out which subview has been pressed
     #rebuild header, imagview, title labels and value labels
