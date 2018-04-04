@@ -11,6 +11,11 @@ forecast_dict = get_data.forecast_me() #get actual data
 
 def switch_pressed(self):
     print ("Pressed "+self.name)
+    if "AM" in self.name:
+        print("Button pressed and AM displayed")
+        view_name = self.name.replace("button_","")
+        print(view_name)
+        view.remove_subview(view_name)
     #get titles and labels based on PM
     #figure out which subview has been pressed
     #rebuild header, imagview, title labels and value labels
@@ -19,11 +24,12 @@ def switch_pressed(self):
 def first_run(forecast_dict,view):
     vis = build.vis(w,h,len(forecast_dict['AM']))
     #create view dictionary
+    global view_dict
     view_dict = {}
 
     for n,day in enumerate(forecast_dict['AM']):
         d = n+1
-        q = 'AM_'+str(d)
+        q = 'AM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
         view.add_subview(view_dict[q]) #add subview to main view
 
@@ -42,7 +48,7 @@ def first_run(forecast_dict,view):
 
     for n,day in enumerate(forecast_dict['PM']):
         d = n+1
-        q = 'PM_'+str(d)
+        q = 'PM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
         #view.add_subview(view_dict[q]) #add subview to main view
 
@@ -55,13 +61,10 @@ def first_run(forecast_dict,view):
         build.value_labels(n,vis,ui,view_dict[q],value_label_list)
 
     for c,subview in enumerate(view_dict): #for each view, create button and add to main view
-        if subview contains "AM":
+        if "AM" in subview:
             button = build.switch_buttons(c,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
             button.action = switch_pressed
             view.add_subview(button) #each view gets a button
-
-
-
 
 first_run(forecast_dict,view)
 
