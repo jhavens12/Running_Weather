@@ -17,10 +17,28 @@ def switch_pressed(self):
         view_number = view_name.replace("AM","")
         new_view_name = "PM"+view_number
         view.remove_subview(view_dict[view_name]) #view_dict contains names as keys and view objects as values
+        view.remove_subview(self.name) #remove button
         view.add_subview(view_dict[new_view_name])
-    #get titles and labels based on PM
-    #figure out which subview has been pressed
-    #rebuild header, imagview, title labels and value labels
+
+        #add back button with PM name
+        button = build.switch_buttons(view_number,new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
+        button.action = switch_pressed
+        view.add_subview(button)
+
+    if "PM" in self.name:
+        print("Button pressed and PM displayed")
+        view_name = self.name.replace("button_","")
+        view_number = view_name.replace("PM","")
+        new_view_name = "AM"+view_number
+        view.remove_subview(view_dict[view_name]) #view_dict contains names as keys and view objects as values
+        view.remove_subview(self.name) #remove button
+        view.add_subview(view_dict[new_view_name])
+
+        #add back button with PM name
+        button = build.switch_buttons(view_number,new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
+        button.action = switch_pressed
+        view.add_subview(button)
+
 
 
 def first_run(forecast_dict,view):
@@ -52,6 +70,7 @@ def first_run(forecast_dict,view):
         d = n+1
         q = 'PM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
+        view_dict[q].background_color = "darkblue" #change for PM
         #view.add_subview(view_dict[q]) #add subview to main view
 
         header = build.headers(n,vis,ui,forecast_dict['PM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
