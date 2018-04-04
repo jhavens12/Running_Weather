@@ -82,7 +82,7 @@ def forecast_me():
 
         forecast_dict['PM'] = {}
         forecast_dict['AM'] = {}
-        
+
         for hour in hforecast['hourly_forecast']:
             if hour['FCTTIME']['hour_padded'] == '05':# or hour['FCTTIME']['hour_padded'] == '17': AM
 
@@ -121,5 +121,3 @@ def forecast_me():
     else:
         del forecast_dict['timestamp'] #delete timestamp so it does not interfere
         return forecast_dict
-
-pprint(forecast_me())
