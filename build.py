@@ -129,7 +129,7 @@ def title_labels(n,vis,ui,view_name,title_label_list,timeset):
         label.border_color = 'black'
         if timeset == 'AM':
             label.text_color = 'black'
-        if timest == 'PM':
+        if timeset == 'PM':
             label.text_color = 'white'
         label.border_width = 0
         label.alignment = 0 #1 is center, #0 is left justified
@@ -147,7 +147,7 @@ def value_labels(n,vis,ui,view_name,value_label_list,timeset):
         label.border_color = 'black'
         if timeset == 'AM':
             label.text_color = 'black'
-        if timest == 'PM':
+        if timeset == 'PM':
             label.text_color = 'white'
         label.border_width = 0
         label.alignment = 3 #1 is center, #0 is left justified
