@@ -21,7 +21,7 @@ def switch_pressed(self):
         view.add_subview(view_dict[new_view_name])
 
         #add back button with PM name
-        button = build.switch_buttons(int(view_number-1),new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
+        button = build.switch_buttons(int(view_number),new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
         button.action = switch_pressed
         view.add_subview(button)
 
@@ -35,7 +35,7 @@ def switch_pressed(self):
         view.add_subview(view_dict[new_view_name])
 
         #add back button with PM name
-        button = build.switch_buttons(int(view_number-1),new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
+        button = build.switch_buttons(int(view_number),new_view_name,vis,ui) #pass cycle number, view name(data), vis library and ui element
         button.action = switch_pressed
         view.add_subview(button)
 
@@ -84,7 +84,8 @@ def first_run(forecast_dict,view):
 
     for c,subview in enumerate(view_dict): #for each view, create button and add to main view
         if "AM" in subview:
-            button = build.switch_buttons(c,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
+            d = c+1 #start with button 1, not 0
+            button = build.switch_buttons(d,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
             button.action = switch_pressed
             view.add_subview(button) #each view gets a button
 
