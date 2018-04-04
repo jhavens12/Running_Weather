@@ -21,7 +21,8 @@ def first_run(forecast_dict,view):
     view_dict = {}
 
     for n,day in enumerate(forecast_dict['AM']):
-        q = n+1
+        d = n+1
+        q = 'AM_'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
         view.add_subview(view_dict[q]) #add subview to main view
 
@@ -38,18 +39,17 @@ def first_run(forecast_dict,view):
         #value_labels
         build.value_labels(n,vis,ui,view_dict[q],value_label_list)
 
-
-
+    #for n,day in enumerate(forecast_dict['PM']):
 
     #do the same as above for PM views, but do not display them until button press
     #then add buttons
     #am views even, pm views odd?
     for c,data in enumerate(view_dict): #for each view, create button and add to main view
-        button = build.switch_buttons(c,vis,ui)
+        button = build.switch_buttons(str(data.name),vis,ui)
         button.action = switch_pressed
         view.add_subview(button) #each view gets a button
 
-    #for n,day in enumerate(forecast_dict['PM']):
+
 
 
 first_run(forecast_dict,view)
