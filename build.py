@@ -10,7 +10,7 @@ def vis(w,h,entry_count):
     vis['entry_count'] = entry_count
     #Subview
     vis['subview_width'] = (w/vis['entry_count'])-vis['side_margin']
-    vis['subview_height'] = h-(vis['top_margin']*4)
+    vis['subview_height'] = h-(vis['top_margin']*6)
     vis['subview_y'] = vis['top_margin']
     vis['subview_x'] = vis['side_margin']
     #Header
@@ -38,7 +38,7 @@ def vis(w,h,entry_count):
     #Buttons
     #vis['button_x'] = vis['header_x'] + vis['subview_x']#subviewx + header_x
     vis['button_height'] = 32 #above button_y
-    vis['button_y'] = vis['subview_height'] - vis['button_height'] - 5 #view height minus button height plus some
+    vis['button_y'] = h - vis['button_height'] - 5 #view height minus button height plus some
     vis['button_width'] = vis['header_width']
 
 
@@ -129,7 +129,7 @@ def value_labels(n,vis,ui,view_name,value_label_list):
         label.text = str(text)
         view_name.add_subview(label)
 
-def switch_buttons(n,vis,ui,day):
+def switch_buttons(n,vis,ui):
     #Buttons
     button_x = vis['header_x'] + vis['side_margin'] + ( ( vis['w_adjusted'] / vis['entry_count'] ) *n) #has to be dynamic
     n = n+1
