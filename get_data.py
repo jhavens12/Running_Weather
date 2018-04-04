@@ -95,7 +95,7 @@ def forecast_me():
                     forecast_dict['AM'][date_key]['weather'] = hour
                     del forecast_dict['AM'][date_key]['weather']['FCTTIME']
 
-            if hour['FCTTIME']['hour_padded'] == '17':# or hour['FCTTIME']['hour_padded'] == '17': PM
+            if hour['FCTTIME']['hour_padded'] == '17':
 
                 if hour['FCTTIME']['weekday_name'] == 'Tuesday' or hour['FCTTIME']['weekday_name'] == 'Thursday':
 
