@@ -50,7 +50,6 @@ def first_run(forecast_dict,view):
 
         PM_KEY = list(forecast_dict['PM'].keys())[0] #this is the correct key
         forecast_dict['AM'][PM_KEY] = forecast_dict['PM'][PM_KEY] #move from pm to AM?
-
         vis = build.vis(w,h,pm_count)
     #create view dictionary
     global view_dict
@@ -60,20 +59,18 @@ def first_run(forecast_dict,view):
         d = n+1
         q = 'AM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
-        #view.add_subview(view_dict[subview])view.add_subview(view_dict[q])
-        # #add subview to main view
-
         header = build.headers(n,vis,ui,forecast_dict['AM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
         view_dict[q].add_subview(header)
-
-        #the load from url option seems to be freezing every once in a while
         #imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
         #view_dict[q].add_subview(imageview)
-
-        title_label_list,value_label_list = build.AM_titles_and_values(forecast_dict['AM'][day])
-
-        build.title_labels(n,vis,ui,view_dict[q],title_label_list,'AM')
-        build.value_labels(n,vis,ui,view_dict[q],value_label_list,'AM')
+        if day.hour < 10: #if the hour is truly AM time
+            title_label_list,value_label_list = build.AM_titles_and_values(forecast_dict['AM'][day])
+            build.title_labels(n,vis,ui,view_dict[q],title_label_list,'AM')
+            build.value_labels(n,vis,ui,view_dict[q],value_label_list,'AM')
+        else: #if the time is PM time but has been copied to AM time (since there is no AM time for that day)
+            title_label_list,value_label_list = build.PM_titles_and_values(forecast_dict['PM'][day])
+            build.title_labels(n,vis,ui,view_dict[q],title_label_list,'PM')
+            build.value_labels(n,vis,ui,view_dict[q],value_label_list,'PM')
 
     for n,day in enumerate(forecast_dict['PM']):
         d = n+1
