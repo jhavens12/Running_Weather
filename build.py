@@ -47,7 +47,7 @@ def vis(w,h,entry_count):
 def AM_titles_and_values(day):
     #put toogether dictionary of data we want to display based on forecast dict
     title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Astro Twilight:',\
-                        'Nautical Twilight:','Civil Twilight:','Sunrise:','Windspeed:']
+                        'Naut. Twilight:','Civil Twilight:','Sunrise:','Windspeed:']
 
     value_label_list = []
     value_label_list.append(day['weather']['condition'])
@@ -67,7 +67,7 @@ def AM_titles_and_values(day):
 def PM_titles_and_values(day):
     #put toogether dictionary of data we want to display based on forecast dict
     title_label_list = ['Condition:','Actual Temp:','Feels Like:','Windchill:','% Precipitation:','Humidity:','Sunset:',\
-                        'Civil Twilight:','Nautical Twilight:','Astro Twilight:','Windspeed:']
+                        'Civil Twilight:','Naut. Twilight:','Astro Twilight:','Windspeed:']
 
     value_label_list = []
     value_label_list.append(day['weather']['condition'])
@@ -133,7 +133,7 @@ def title_labels(n,vis,ui,view_name,title_label_list,timeset):
             label.text_color = 'white'
         label.border_width = 0
         label.alignment = 0 #1 is center, #0 is left justified
-        label.font = ('<system>',12)
+        label.font = ('<system-bold>',12)
         label.number_of_lines = 1
         label.text = text
         view_name.add_subview(label)
