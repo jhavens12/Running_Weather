@@ -19,7 +19,7 @@ def vis(w,h,entry_count):
     if entry_count == 3:
         vis['spacing_margin'] = 10
     if entry_count == 2:
-        vis['spacing_margin'] = 5
+        vis['spacing_margin'] = 2
     vis['entry_count'] = entry_count
     #Subview
     vis['subview_width'] = (w/vis['entry_count'])-vis['side_margin']
