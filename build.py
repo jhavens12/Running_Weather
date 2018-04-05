@@ -131,7 +131,7 @@ def imageview_local(n,vis,ui,day,view_name):
     my_image_path = './resources/'+ str(day['weather']['fctcode']) + ".gif"
     my_image = ImageP.open(my_image_path)
     b = BytesIO()
-    my_image.save(b, my_image.format)
+    my_image.save(b, 'GIF')
     test = ui.Image.from_data(b.getvalue())
     imageview.image = test
     #imageview.image = the_image.image
