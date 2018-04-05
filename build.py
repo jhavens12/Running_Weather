@@ -101,6 +101,7 @@ def subviews(n,vis,ui):
     subview = ui.ScrollView(frame=(subview_x, vis['subview_y'], vis['subview_width'], vis['subview_height']), background_color="#01B2FC")
     subview.border_color = 'black'
     subview.border_width = 0
+    subview.border_radius = 5
     subview.title = view_name
 
     return subview #return object
