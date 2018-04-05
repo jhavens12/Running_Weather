@@ -16,7 +16,10 @@ def vis(w,h,entry_count):
     vis['w_adjusted'] = w-vis['side_margin']
     vis['top_margin'] = 20
     vis['other_label_height'] = 32
-    vis['spacing_margin'] = 10
+    if entry_count == 3:
+        vis['spacing_margin'] = 10
+    if entry_count == 2:
+        vis['spacing_margin'] = 5
     vis['entry_count'] = entry_count
     #Subview
     vis['subview_width'] = (w/vis['entry_count'])-vis['side_margin']
