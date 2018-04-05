@@ -1,4 +1,5 @@
 from PIL import Image
+import io
 def vis(w,h,entry_count):
 
     #Static Entries
@@ -126,8 +127,11 @@ def imageview_local(n,vis,ui,day,view_name):
     image_view_name = "imageview"+str(n)
     imageview = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
     #imageview.load_from_url(day['weather']['icon_url'])
-    my_image_path = str(day['weather']['fctcode'])+".gif")
-    imageview.image = ui.Image(my_image_path)
+    my_image_path = './resources/'+ str(day['weather']['fctcode']) + ".gif"
+    my_image = Image.open(my_image_path)
+    with io.BytesIO() as bIO:
+        my_image.save(bIO, my_image.format)
+        imageview.image = ui.Image.from_data(bIO.getvalue())
     #imageview.image = the_image.image
     imageview.border_width = 1
     imageview.border_color = "grey"
