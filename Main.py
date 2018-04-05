@@ -107,11 +107,11 @@ def first_run(forecast_dict,view):
                     AM_number_plus = AM_number + 1
                     new_view_dict["AM"+str(AM_number_plus)] = view_dict[subview]
                 if subview == "PM1": #copy PM1 to AM1
-                    new_view_dict['AM1'] == view_dict[subview]
+                    new_view_dict['AM1'] = view_dict[subview]
                 if "PM" in subview: #move from old to new dictionary
                     new_view_dict[subview] = view_dict[subview]
 
-            for subview in new_view_dict: #now that view_dict should be the way we want it
+            for c,subview in enumerate(new_view_dict): #now that view_dict should be the way we want it
                 if "AM" in subview: #still show AM side first (most important)
                     view.add_subview(view_dict[subview])
                     d = c+1 #start with button 1, not 0
