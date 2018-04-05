@@ -1,5 +1,6 @@
-from PIL import Image
-import io
+from io import BytesIO
+from PIL import Image as ImageP
+
 def vis(w,h,entry_count):
 
     #Static Entries
@@ -128,10 +129,10 @@ def imageview_local(n,vis,ui,day,view_name):
     imageview = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
     #imageview.load_from_url(day['weather']['icon_url'])
     my_image_path = './resources/'+ str(day['weather']['fctcode']) + ".gif"
-    my_image = Image.open(my_image_path)
-    with io.BytesIO() as bIO:
-        my_image.save(bIO, my_image.format)
-        imageview.image = ui.Image.from_data(bIO.getvalue())
+    my_image = ImageP.open(my_image_path)
+    b = ByesIO()
+    my_image.save(b, my_image.format)
+    imageview.image = ui.Image.from_data(b.getvalue())
     #imageview.image = the_image.image
     imageview.border_width = 1
     imageview.border_color = "grey"
