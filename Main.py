@@ -47,6 +47,8 @@ def first_run(forecast_dict,view):
     if pm_count == am_count:
         vis = build.vis(w,h,am_count)
     if pm_count > am_count:
+        #need to create additional AM entry to fill in missing entry
+        #USE PM ENTRY TWICE
         vis = build.vis(w,h,pm_count)
     #create view dictionary
     global view_dict
@@ -97,15 +99,31 @@ def first_run(forecast_dict,view):
     else:
         if pm_count > am_count: #on a run day, but after the morning has passed
             count = 0 #have to reset and not use enumerate because PM comes later in dict than AM
-            for subview in view_dict:
-                if "PM" in subview:
-                    count = count + 1
+            #need to clone the PM1 to AM1, then push AM1 to AM2
+            #Push AM1 to AM2, HOW?
+            for subview in view_dict: #modify view_dict to show two PM views for AM1 and PM1
+                if "AM" in subview:
+                    AM_number = int(subview.replace("AM",""))
+                    AM_number_plus = AM_number + 1
+                    view_dict["AM"+AM_number_plus] = subview
+                if subview == "PM1": #copy PM1 to AM1
+                    subview['AM1'] == subview
+            for subview in view_dict: #now that view_dict should be the way we want it
+                if "AM" in subview:
                     view.add_subview(view_dict[subview])
-                    print(view_dict[subview])
-                    print()
-                    button = build.switch_buttons(count,subview,vis,ui)
+                    d = c+1 #start with button 1, not 0
+                    button = build.switch_buttons(d,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
                     button.action = switch_pressed
-                    view.add_subview(button)
+                    view.add_subview(button) #each view gets a button
+
+                # if "PM" in subview:
+                #     count = count + 1
+                #     view.add_subview(view_dict[subview])
+                #     print(view_dict[subview])
+                #     print()
+                #     button = build.switch_buttons(count,subview,vis,ui)
+                #     button.action = switch_pressed
+                #     view.add_subview(button)
 
 first_run(forecast_dict,view)
 
