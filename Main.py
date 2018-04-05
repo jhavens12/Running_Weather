@@ -45,9 +45,7 @@ def first_run(forecast_dict,view):
     global vis
     if pm_count == am_count:
         vis = build.vis(w,h,am_count)
-    if pm_count > am_count:
-        #need to create additional AM entry to fill in missing entry
-
+    if pm_count > am_count: #copy first PM key to AM key in case there is not an AM key to use
         PM_KEY = list(forecast_dict['PM'].keys())[0] #this is the correct key
         forecast_dict['AM'][PM_KEY] = forecast_dict['PM'][PM_KEY] #move from pm to AM?
         vis = build.vis(w,h,pm_count)
@@ -71,19 +69,16 @@ def first_run(forecast_dict,view):
             title_label_list,value_label_list = build.PM_titles_and_values(forecast_dict['PM'][day])
             build.title_labels(n,vis,ui,view_dict[q],title_label_list,'PM')
             build.value_labels(n,vis,ui,view_dict[q],value_label_list,'PM')
+            view_dict[q].background_color = "#0952c6"
 
     for n,day in enumerate(forecast_dict['PM']):
         d = n+1
         q = 'PM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
         view_dict[q].background_color = "#0952c6" #change for PM
-        #view.add_subview(view_dict[q]) #add subview to main view
-
         header = build.headers(n,vis,ui,forecast_dict['PM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
         view_dict[q].add_subview(header)
-
         title_label_list,value_label_list = build.PM_titles_and_values(forecast_dict['PM'][day])
-
         build.title_labels(n,vis,ui,view_dict[q],title_label_list,'PM')
         build.value_labels(n,vis,ui,view_dict[q],value_label_list,'PM')
 
