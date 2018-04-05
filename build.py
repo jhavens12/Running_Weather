@@ -130,9 +130,10 @@ def imageview_local(n,vis,ui,day,view_name):
     #imageview.load_from_url(day['weather']['icon_url'])
     my_image_path = './resources/'+ str(day['weather']['fctcode']) + ".gif"
     my_image = ImageP.open(my_image_path)
-    b = ByesIO()
+    b = BytesIO()
     my_image.save(b, my_image.format)
-    imageview.image = ui.Image.from_data(b.getvalue())
+    test = ui.Image.from_data(b.getvalue())
+    imageview.image = test
     #imageview.image = the_image.image
     imageview.border_width = 1
     imageview.border_color = "grey"
