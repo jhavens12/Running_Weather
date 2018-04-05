@@ -122,9 +122,9 @@ def headers(n,vis,ui,day,view_name):
 def imageview(n,vis,ui,day,view_name):
     #Image View
     image_view_name = "imageview"+str(n)
-    imageview = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
+    imageview = ui.ImageView(name=image_view_name, bg_color='transparent', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
     imageview.load_from_url(day['weather']['icon_url'])
-    imageview.border_width = 1
+    #imageview.border_width = 1
     imageview.border_color = "grey"
 
     return imageview
@@ -136,8 +136,7 @@ def imageview_local(n,vis,ui,day,view_name):
     imageview = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
     #imageview.load_from_url(day['weather']['icon_url'])
 
-    #my_image_path = './resources/'+ str(day['weather']['fctcode']) + ".gif"
-    my_mage_path = './resources/1.png'
+    my_image_path = './resources/mdi/'+ str(day['weather']['fctcode']) + ".png"
     my_image = Image.open(my_image_path)
     imageview.image = pil2ui(ui,my_image)
 
