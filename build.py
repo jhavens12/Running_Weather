@@ -54,7 +54,10 @@ def vis(w,h,entry_count):
     vis['title_label_y'] = vis['imageview_y']+vis['imageview_height']
     vis['title_label_width'] = vis['subview_width']-(vis['side_margin']*4)
     vis['title_label_height'] = vis['other_label_height']
-    vis['title_label_margins'] = 1
+    if entry_count >= 4:
+        vis['title_label_margins'] = -1
+    else:
+        vis['title_label_margins'] = 1
     #Value Labels
     vis['value_label_x'] = vis['side_margin'] * 2
     vis['value_label_y'] = vis['imageview_y'] + vis['imageview_height'] + (vis['other_label_height']/2)
