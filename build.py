@@ -1,7 +1,7 @@
 import io
 from PIL import Image as ImageP
 
-def pil_to_ui(img):
+def pil_to_ui(ui,img):
     b = io.BytesIO()
     img.save(b, "PNG")
     data = b.getvalue()
@@ -138,7 +138,7 @@ def imageview_local(n,vis,ui,day,view_name):
 
     my_image_path = './resources/'+ str(day['weather']['fctcode']) + ".gif"
     my_image = ImageP.open(my_image_path)
-    imageview.image = pil_to_ui(my_image)
+    imageview.image = pil_to_ui(ui,my_image)
 
     imageview.border_width = 1
     imageview.border_color = "grey"
