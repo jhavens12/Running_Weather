@@ -129,3 +129,5 @@ def forecast_me():
     else:
         del forecast_dict['timestamp'] #delete timestamp so it does not interfere
         return forecast_dict
+
+    #dont print
