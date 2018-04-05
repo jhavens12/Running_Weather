@@ -8,6 +8,7 @@ w,h = ui.get_screen_size()
 view = ui.View(bg_color = 'white', frame = (0,0,w,h)) #main view
 
 forecast_dict = get_data.forecast_me() #get actual data
+pprint(forecast_dict)
 
 def switch_pressed(self):
     print ("Pressed "+self.name)
@@ -101,9 +102,10 @@ def first_run(forecast_dict,view):
         if pm_count > am_count: #on a run day, but after the morning has passed
             for count,subview in enumerate(view_dict):
                 if "PM" in subview:
-                    print("PM")
+                    print("PM Count: "+str(count))
                     view.add_subview(view_dict[subview])
                     count_1 = count+1 #start with button 1, not 0
+                    print("Count_1 "+str(count_1))
                     button = build.switch_buttons(count_1,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
                     button.action = switch_pressed
                     view.add_subview(button) #each view gets a button
