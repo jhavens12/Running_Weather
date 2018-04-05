@@ -100,13 +100,12 @@ def first_run(forecast_dict,view):
                 view.add_subview(button) #each view gets a button
     else:
         if pm_count > am_count: #on a run day, but after the morning has passed
-            for count,subview in enumerate(view_dict):
+            count = 0 #have to reset and not use enumerate because PM comes later in dict than AM
+            for subview in view_dict:
                 if "PM" in subview:
-                    print("PM Count: "+str(count))
+                    count = count + 1
                     view.add_subview(view_dict[subview])
-                    count_1 = count+1 #start with button 1, not 0
-                    print("Count_1 "+str(count_1))
-                    button = build.switch_buttons(count_1,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
+                    button = build.switch_buttons(count,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
                     button.action = switch_pressed
                     view.add_subview(button) #each view gets a button
 
