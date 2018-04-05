@@ -100,14 +100,18 @@ def first_run(forecast_dict,view):
             count = 0 #have to reset and not use enumerate because PM comes later in dict than AM
             #need to clone the PM1 to AM1, then push AM1 to AM2
             #Push AM1 to AM2, HOW?
+            new_view_dict = {}
             for subview in view_dict: #modify view_dict to show two PM views for AM1 and PM1
                 if "AM" in subview:
                     AM_number = int(subview.replace("AM",""))
                     AM_number_plus = AM_number + 1
-                    view_dict["AM"+str(AM_number_plus)] = subview
+                    new_view_dict["AM"+str(AM_number_plus)] = view_dict[subview]
                 if subview == "PM1": #copy PM1 to AM1
-                    subview['AM1'] == view_dict[subview]
-            for subview in view_dict: #now that view_dict should be the way we want it
+                    new_view_dict['AM1'] == view_dict[subview]
+                if "PM" in subview: #move from old to new dictionary
+                    new_view_dict[subview] = view_dict[subview]
+
+            for subview in new_view_dict: #now that view_dict should be the way we want it
                 if "AM" in subview: #still show AM side first (most important)
                     view.add_subview(view_dict[subview])
                     d = c+1 #start with button 1, not 0
