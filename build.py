@@ -34,10 +34,16 @@ def vis(w,h,entry_count):
     vis['subview_y'] = vis['top_margin']
     vis['subview_x'] = vis['side_margin']
     #Header
-    vis['header_x'] = vis['side_margin'] * 2
-    vis['header_y'] = vis['top_margin'] / 2
-    vis['header_width'] = vis['subview_width']-(vis['side_margin']*4)
-    vis['header_height'] = 64
+    if entry_count >= 4:
+        vis['header_x'] = vis['side_margin']
+        vis['header_y'] = vis['top_margin'] / 4
+        vis['header_width'] = vis['subview_width']-(vis['side_margin']*2)
+        vis['header_height'] = 64
+    else:
+        vis['header_x'] = vis['side_margin'] * 2
+        vis['header_y'] = vis['top_margin'] / 2
+        vis['header_width'] = vis['subview_width']-(vis['side_margin']*4)
+        vis['header_height'] = 64
     #Image View
     vis['imageview_x'] = vis['header_x'] + (vis['side_margin'] * 2)
     vis['imageview_y'] = vis['header_y'] + vis['header_height'] + vis['spacing_margin']
@@ -60,6 +66,15 @@ def vis(w,h,entry_count):
     vis['button_height'] = 32 #above button_y
     vis['button_y'] = h - vis['button_height'] - 5 #view height minus button height plus some
     vis['button_width'] = vis['header_width']
+    #Text Size?
+    if entry_count == 4:
+        vis['title_label_size'] = 8
+        vis['value_label_size'] = 10
+        vis['header_label_size'] = 13
+    else:
+        vis['title_label_size'] = 12
+        vis['value_label_size'] = 14
+        vis['header_label_size'] = 17
 
 
     return vis
@@ -126,7 +141,7 @@ def headers(n,vis,ui,day,view_name):
     header.corner_radius = 15
     header.border_width = 5
     header.alignment = 1 #1 is center, 0 is left justified
-    header.font = ('<system-bold>',17)
+    header.font = ('<system-bold>',vis['header_label_size'])
     header.number_of_lines = 3
     header.text = day['time']['mon_abbrev']+" "+day['time']['mday']+" "+day['time']['weekday_name']+" "+day['time']['civil']
 
@@ -172,7 +187,7 @@ def title_labels(n,vis,ui,view_name,title_label_list,timeset):
             label.text_color = 'white'
         label.border_width = 0
         label.alignment = 0 #1 is center, #0 is left justified
-        label.font = ('<system-bold>',12)
+        label.font = ('<system-bold>',vis['title_label_size'])
         label.number_of_lines = 1
         label.text = text
         view_name.add_subview(label)
@@ -190,7 +205,7 @@ def value_labels(n,vis,ui,view_name,value_label_list,timeset):
             label.text_color = 'white'
         label.border_width = 0
         label.alignment = 3 #1 is center, #0 is left justified
-        label.font = ('<system>',14)
+        label.font = ('<system>',vis['value_label_size'])
         label.number_of_lines = 1
         label.text = str(text)
         view_name.add_subview(label)
