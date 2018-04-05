@@ -26,7 +26,7 @@ def vis(w,h,entry_count):
     if entry_count == 3:
         vis['subview_height'] = h-(vis['top_margin']*6)
     if entry_count == 2:
-        vis['subview_height'] = h-(vis['top_margin']*3)
+        vis['subview_height'] = h-(vis['top_margin']*3.5)
     vis['subview_y'] = vis['top_margin']
     vis['subview_x'] = vis['side_margin']
     #Header
@@ -107,7 +107,7 @@ def subviews(n,vis,ui):
     subview = ui.ScrollView(frame=(subview_x, vis['subview_y'], vis['subview_width'], vis['subview_height']), background_color="#01B2FC")
     subview.border_color = 'black'
     subview.border_width = 0
-    subview.corner_radius = 5
+    subview.corner_radius = 10
     subview.title = view_name
 
     return subview #return object
@@ -116,11 +116,13 @@ def headers(n,vis,ui,day,view_name):
     #Headers
     label_name = "label"+str(n)
     header = ui.Label(name = label_name, bg_color ='white', frame = (vis['header_x'], vis['header_y'], vis['header_width'], vis['header_height']))
-    header.border_color = 'black'
-    header.tint_color = 'black'
+    header.border_color = 'grey'
+    header.text_color = 'black'
+    #header.tint_color = 'black'
+    header.corner_radius = 15
     header.border_width = 1
     header.alignment = 1 #1 is center, 0 is left justified
-    header.font = ('<system>',17)
+    header.font = ('<system-bold>',17)
     header.number_of_lines = 3
     header.text = day['time']['mon_abbrev']+" "+day['time']['mday']+" "+day['time']['weekday_name']+" "+day['time']['civil']
 
