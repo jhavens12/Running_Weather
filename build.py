@@ -29,6 +29,8 @@ def vis(w,h,entry_count):
         vis['subview_height'] = h-(vis['top_margin']*6)
     if entry_count == 2:
         vis['subview_height'] = h-(vis['top_margin']*3.5)
+    if entry_count == 4:
+        vis['subview_height'] = h-(vis['top_margin']*6)
     else:
         vis['subview_height'] = h-(vis['top_margin']*7)
     vis['subview_y'] = vis['top_margin']
@@ -71,8 +73,8 @@ def vis(w,h,entry_count):
     vis['button_width'] = vis['header_width']
     #Text Size?
     if entry_count == 4:
-        vis['title_label_size'] = 8
-        vis['value_label_size'] = 10
+        vis['title_label_size'] = 10
+        vis['value_label_size'] = 11
         vis['header_label_size'] = 13
     else:
         vis['title_label_size'] = 12
