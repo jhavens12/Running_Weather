@@ -41,8 +41,13 @@ def switch_pressed(self):
         view.add_subview(button)
 
 def first_run(forecast_dict,view):
+    am_count = len(forecast_dict['AM'])
+    pm_count = len(forecast_dict['PM'])
     global vis
-    vis = build.vis(w,h,len(forecast_dict['AM']))
+    if pm_count == am_count:
+        vis = build.vis(w,h,am_count)
+    if pm_count > am_count:
+        vis = build.vis(w,h,pm_count)
     #create view dictionary
     global view_dict
     view_dict = {}
@@ -51,6 +56,7 @@ def first_run(forecast_dict,view):
         d = n+1
         q = 'AM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
+        #view.add_subview(view_dict[subview])view.add_subview(view_dict[q])
         # #add subview to main view
 
         header = build.headers(n,vis,ui,forecast_dict['AM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
@@ -80,16 +86,6 @@ def first_run(forecast_dict,view):
         build.title_labels(n,vis,ui,view_dict[q],title_label_list,'PM')
         build.value_labels(n,vis,ui,view_dict[q],value_label_list,'PM')
 
-    am_count = 0
-    pm_count = 0
-
-    pprint(view_dict)
-    print()
-    for subview in view_dict: #for each view, create button and add to main view
-        if "PM" in subview:
-            pm_count = pm_count + 1
-        if "AM" in subview:
-            am_count = am_count + 1
     if am_count == pm_count:
         for c,subview in enumerate(view_dict):
             if "AM" in subview:
@@ -107,9 +103,9 @@ def first_run(forecast_dict,view):
                     view.add_subview(view_dict[subview])
                     print(view_dict[subview])
                     print()
-                    # button = build.switch_buttons(count,subview,vis,ui)
-                    # button.action = switch_pressed
-                    # view.add_subview(button)
+                    button = build.switch_buttons(count,subview,vis,ui)
+                    button.action = switch_pressed
+                    view.add_subview(button)
 
 first_run(forecast_dict,view)
 
