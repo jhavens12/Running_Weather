@@ -18,3 +18,7 @@ my_image_path = './resources/'+ str(1) + ".gif"
 my_image = Image.open(my_image_path)
 
 imageview.image = pil2ui(my_image)
+
+view.add_subview(imageview)
+
+view.present()
