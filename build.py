@@ -30,7 +30,7 @@ def vis(w,h,entry_count):
     if entry_count == 2:
         vis['subview_height'] = h-(vis['top_margin']*3.5)
     if entry_count == 4:
-        vis['subview_height'] = h-(vis['top_margin']*6)
+        vis['subview_height'] = h-(vis['top_margin']*9)
     else:
         vis['subview_height'] = h-(vis['top_margin']*7)
     vis['subview_y'] = vis['top_margin']
