@@ -8,7 +8,6 @@ w,h = ui.get_screen_size()
 view = ui.View(bg_color = 'white', frame = (0,0,w,h)) #main view
 
 forecast_dict = get_data.forecast_me() #get actual data
-pprint(forecast_dict)
 
 def switch_pressed(self):
     print ("Pressed "+self.name)
@@ -105,11 +104,11 @@ def first_run(forecast_dict,view):
                 if "AM" in subview:
                     AM_number = int(subview.replace("AM",""))
                     AM_number_plus = AM_number + 1
-                    view_dict["AM"+AM_number_plus] = subview
+                    view_dict["AM"+str(AM_number_plus)] = subview
                 if subview == "PM1": #copy PM1 to AM1
-                    subview['AM1'] == subview
+                    subview['AM1'] == view_dict[subview]
             for subview in view_dict: #now that view_dict should be the way we want it
-                if "AM" in subview:
+                if "AM" in subview: #still show AM side first (most important)
                     view.add_subview(view_dict[subview])
                     d = c+1 #start with button 1, not 0
                     button = build.switch_buttons(d,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
