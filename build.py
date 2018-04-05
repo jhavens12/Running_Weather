@@ -1,4 +1,4 @@
-from io import BytesIO
+import io
 from PIL import Image as ImageP
 
 def vis(w,h,entry_count):
@@ -131,7 +131,7 @@ def imageview_local(n,vis,ui,day,view_name):
     my_image_path = './resources/'+ str(day['weather']['fctcode']) + ".gif"
     my_image = ImageP.open(my_image_path)
     #b = BytesIO()
-    with BytesIO() as bIO:
+    with io.BytesIO() as bIO:
         my_image.save(bIO, 'GIF')
         img = ui.Image.from_data(bIO.getvalue())
         imageview.image = img
