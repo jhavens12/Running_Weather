@@ -20,10 +20,10 @@ def vis(w,h,entry_count):
     vis['entry_count'] = entry_count
     #Subview
     vis['subview_width'] = (w/vis['entry_count'])-vis['side_margin']
-    if entry_count = 3:
+    if entry_count == 3:
         vis['subview_height'] = h-(vis['top_margin']*6)
-    if entry_count = 2:
-        vis['subview_height'] = h-(vis['top_margin']*4)
+    if entry_count == 2:
+        vis['subview_height'] = h-(vis['top_margin']*3)
     vis['subview_y'] = vis['top_margin']
     vis['subview_x'] = vis['side_margin']
     #Header
@@ -104,7 +104,7 @@ def subviews(n,vis,ui):
     subview = ui.ScrollView(frame=(subview_x, vis['subview_y'], vis['subview_width'], vis['subview_height']), background_color="#01B2FC")
     subview.border_color = 'black'
     subview.border_width = 0
-    subview.border_radius = 5
+    subview.corner_radius = 5
     subview.title = view_name
 
     return subview #return object
