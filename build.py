@@ -20,7 +20,10 @@ def vis(w,h,entry_count):
     vis['entry_count'] = entry_count
     #Subview
     vis['subview_width'] = (w/vis['entry_count'])-vis['side_margin']
-    vis['subview_height'] = h-(vis['top_margin']*6)
+    if entry_count = 3:
+        vis['subview_height'] = h-(vis['top_margin']*6)
+    if entry_count = 2:
+        vis['subview_height'] = h-(vis['top_margin']*4)
     vis['subview_y'] = vis['top_margin']
     vis['subview_x'] = vis['side_margin']
     #Header
