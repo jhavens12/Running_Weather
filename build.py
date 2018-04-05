@@ -129,7 +129,7 @@ def imageview_local(n,vis,ui,day,view_name):
     print(str(day['weather']['fctcode'])+".gif")
     image1 = Image.open("./resources/"+str(day['weather']['fctcode'])+".gif")
     #im = "./resources/"+str(day['weather']['fctcode'])+".gif"
-    imageview.image = ui.Image.from_data[image1.getvalue()]
+    imageview.image = Image.open("./resources/"+str(day['weather']['fctcode'])+".gif")
     imageview.border_width = 1
     imageview.border_color = "grey"
 
