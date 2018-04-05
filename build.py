@@ -115,12 +115,12 @@ def subviews(n,vis,ui):
 def headers(n,vis,ui,day,view_name):
     #Headers
     label_name = "label"+str(n)
-    header = ui.Label(name = label_name, bg_color ='white', frame = (vis['header_x'], vis['header_y'], vis['header_width'], vis['header_height']))
-    header.border_color = 'grey'
-    header.text_color = 'black'
+    header = ui.Label(name = label_name, bg_color ='transpa', frame = (vis['header_x'], vis['header_y'], vis['header_width'], vis['header_height']))
+    header.border_color = 'white'
+    header.text_color = 'white'
     #header.tint_color = 'black'
     header.corner_radius = 15
-    header.border_width = 1
+    header.border_width = 5
     header.alignment = 1 #1 is center, 0 is left justified
     header.font = ('<system-bold>',17)
     header.number_of_lines = 3
