@@ -1,3 +1,4 @@
+import imageio
 def vis(w,h,entry_count):
 
     #Static Entries
@@ -124,8 +125,9 @@ def imageview_local(n,vis,ui,day,view_name):
     #Image View
     image_view_name = "imageview"+str(n)
     imageview = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
-    imageview.load_from_url(day['weather']['icon_url'])
-    imageview.image("./resources/"+str(day['fctcode'])+".gif")
+    #imageview.load_from_url(day['weather']['icon_url'])
+    im = imageio.imread("./resources/"+str(day['weather']['fctcode'])+".gif")
+    imageview.image(im)
     imageview.border_width = 1
     imageview.border_color = "grey"
 
