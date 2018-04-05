@@ -125,7 +125,8 @@ def imageview_local(n,vis,ui,day,view_name):
     #Image View
     image_view_name = "imageview"+str(n)
     imageview = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
-    imageview.load_from_url(day['weather']['icon_url'])
+    #imageview.load_from_url(day['weather']['icon_url'])
+    print(str(day['weather']['fctcode'])+".gif")
     im = Path("./resources/"+str(day['weather']['fctcode'])+".gif")
     #im = "./resources/"+str(day['weather']['fctcode'])+".gif"
     imageview.image(im)
