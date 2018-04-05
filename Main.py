@@ -78,7 +78,7 @@ def first_run(forecast_dict,view):
         view_dict[q].background_color = "#0952c6" #change for PM
         header = build.headers(n,vis,ui,forecast_dict['PM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
         view_dict[q].add_subview(header)
-        imageview = build.imageview(n,vis,ui,forecast_dict['PM'][day],view_dict[q])
+        imageview = build.imageview_local(n,vis,ui,forecast_dict['PM'][day],view_dict[q])
         view_dict[q].add_subview(imageview)
         title_label_list,value_label_list = build.PM_titles_and_values(forecast_dict['PM'][day])
         build.title_labels(n,vis,ui,view_dict[q],title_label_list,'PM')
