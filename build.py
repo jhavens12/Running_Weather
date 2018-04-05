@@ -21,7 +21,7 @@ def vis(w,h,entry_count):
     #Image View
     vis['imageview_x'] = vis['side_margin'] * 4
     vis['imageview_y'] = vis['header_y'] + vis['header_height'] + vis['spacing_margin']
-    vis['imageview_width'] = vis['subview_width'] - (vis['side_margin'] *8)
+    vis['imageview_width'] = w/3 - (vis['side_margin'] *8)
     vis['imageview_height'] = vis['imageview_width']
     #Title Labels
     vis['title_label_x'] = vis['side_margin']
