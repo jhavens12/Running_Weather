@@ -119,6 +119,18 @@ def imageview(n,vis,ui,day,view_name):
 
     return imageview
 
+def imageview_local(n,vis,ui,day,view_name):
+    #https://www.wunderground.com/weather/api/d/docs?d=resources/phrase-glossary&_ga=2.123754250.1299445518.1522934594-1103271979.1522756403#forecast_description_numbers
+    #Image View
+    image_view_name = "imageview"+str(n)
+    imageview = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
+    imageview.load_from_url(day['weather']['icon_url'])
+    imageview.image("./resources/"+str(day['fctcode'])+".gif")
+    imageview.border_width = 1
+    imageview.border_color = "grey"
+
+    return imageview
+
 def title_labels(n,vis,ui,view_name,title_label_list,timeset):
 
     for x,text in enumerate(title_label_list):

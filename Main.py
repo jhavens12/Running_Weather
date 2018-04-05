@@ -53,14 +53,14 @@ def first_run(forecast_dict,view):
     global view_dict
     view_dict = {}
 
-    for n,day in enumerate(sorted(forecast_dict['AM'])):
+    for n,day in enumerate(sorted(forecast_dict['AM'])): #create AM views
         d = n+1
         q = 'AM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
         header = build.headers(n,vis,ui,forecast_dict['AM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
         view_dict[q].add_subview(header)
-        #imageview = build.imageview(n,vis,ui,forecast_dict[day],view_dict[q])
-        #view_dict[q].add_subview(imageview)
+        imageview = build.imageview_local(n,vis,ui,forecast_dict[day],view_dict[q])
+        view_dict[q].add_subview(imageview)
         if day.hour < 10: #if the hour is truly AM time
             title_label_list,value_label_list = build.AM_titles_and_values(forecast_dict['AM'][day])
             build.title_labels(n,vis,ui,view_dict[q],title_label_list,'AM')
@@ -71,7 +71,7 @@ def first_run(forecast_dict,view):
             build.value_labels(n,vis,ui,view_dict[q],value_label_list,'PM')
             view_dict[q].background_color = "#0952c6"
 
-    for n,day in enumerate(forecast_dict['PM']):
+    for n,day in enumerate(forecast_dict['PM']): #Create PM Views
         d = n+1
         q = 'PM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
@@ -89,40 +89,6 @@ def first_run(forecast_dict,view):
             button = build.switch_buttons(d,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
             button.action = switch_pressed
             view.add_subview(button) #each view gets a button
-    # else:
-    #     if pm_count > am_count: #on a run day, but after the morning has passed
-    #         count = 0 #have to reset and not use enumerate because PM comes later in dict than AM
-    #         #need to clone the PM1 to AM1, then push AM1 to AM2
-    #         #Push AM1 to AM2, HOW?
-    #         new_view_dict = {}
-    #         for subview in view_dict: #modify view_dict to show two PM views for AM1 and PM1
-    #             if "AM" in subview:
-    #                 AM_number = int(subview.replace("AM",""))
-    #                 AM_number_plus = AM_number + 1
-    #                 new_view_dict["AM"+str(AM_number_plus)] = view_dict[subview]
-    #             if subview == "PM1": #copy PM1 to AM1
-    #                 new_view_dict['AM1'] = view_dict[subview]
-    #             if "PM" in subview: #move from old to new dictionary
-    #                 new_view_dict[subview] = view_dict[subview]
-    #
-    #         pprint(new_view_dict)
-    #
-    #         for c,subview in enumerate(new_view_dict): #now that view_dict should be the way we want it
-    #             if "AM" in subview: #still show AM side first (most important)
-    #                 view.add_subview(new_view_dict[subview])
-    #                 d = c+1 #start with button 1, not 0
-    #                 button = build.switch_buttons(d,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
-    #                 button.action = switch_pressed
-    #                 view.add_subview(button) #each view gets a button
-
-                # if "PM" in subview:
-                #     count = count + 1
-                #     view.add_subview(view_dict[subview])
-                #     print(view_dict[subview])
-                #     print()
-                #     button = build.switch_buttons(count,subview,vis,ui)
-                #     button.action = switch_pressed
-                #     view.add_subview(button)
 
 first_run(forecast_dict,view)
 
