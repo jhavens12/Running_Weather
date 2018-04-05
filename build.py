@@ -20,6 +20,8 @@ def vis(w,h,entry_count):
         vis['spacing_margin'] = 10
     if entry_count == 2:
         vis['spacing_margin'] = 2
+    else:
+        vis['spacing_margin'] = 0
     vis['entry_count'] = entry_count
     #Subview
     vis['subview_width'] = (w/vis['entry_count'])-vis['side_margin']
@@ -115,7 +117,7 @@ def subviews(n,vis,ui):
 def headers(n,vis,ui,day,view_name):
     #Headers
     label_name = "label"+str(n)
-    header = ui.Label(name = label_name, bg_color ='transpa', frame = (vis['header_x'], vis['header_y'], vis['header_width'], vis['header_height']))
+    header = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['header_x'], vis['header_y'], vis['header_width'], vis['header_height']))
     header.border_color = 'white'
     header.text_color = 'white'
     #header.tint_color = 'black'
