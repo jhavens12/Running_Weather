@@ -128,8 +128,9 @@ def imageview_local(n,vis,ui,day,view_name):
     #imageview.load_from_url(day['weather']['icon_url'])
     print(str(day['weather']['fctcode'])+".gif")
     im = Path("./resources/"+str(day['weather']['fctcode'])+".gif")
+    print(im)
     #im = "./resources/"+str(day['weather']['fctcode'])+".gif"
-    imageview.image(im)
+    imageview.image = im
     imageview.border_width = 1
     imageview.border_color = "grey"
 
