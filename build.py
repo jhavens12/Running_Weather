@@ -136,7 +136,8 @@ def imageview_local(n,vis,ui,day,view_name):
     imageview = ui.ImageView(name=image_view_name, bg_color='white', frame=(vis['imageview_x'], vis['imageview_y'], vis['imageview_width'], vis['imageview_height']))
     #imageview.load_from_url(day['weather']['icon_url'])
 
-    my_image_path = './resources/'+ str(day['weather']['fctcode']) + ".gif"
+    #my_image_path = './resources/'+ str(day['weather']['fctcode']) + ".gif"
+    my_mage_path = './resources/1.png'
     my_image = Image.open(my_image_path)
     imageview.image = pil2ui(ui,my_image)
 
