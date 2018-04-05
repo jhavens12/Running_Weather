@@ -159,10 +159,6 @@ def value_labels(n,vis,ui,view_name,value_label_list,timeset):
 def switch_buttons(n,view_name,vis,ui):
     #Buttons
     button_x = vis['header_x'] + vis['side_margin'] + ( ( vis['w_adjusted'] / vis['entry_count'] ) * (n-1)) #has to be dynamic
-    print("Multipled By: "+str(n-1))
-    print(button_x)
-    print(vis['button_y'])
-    print()
     button_name = "button_"+str(view_name)
     button = ui.Button(name = button_name, bg_color ='white', frame = (button_x, vis['button_y'], vis['button_width'], vis['button_height']))
     button.border_color = 'black'

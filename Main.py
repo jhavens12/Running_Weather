@@ -47,19 +47,16 @@ def first_run(forecast_dict,view):
         vis = build.vis(w,h,am_count)
     if pm_count > am_count:
         #need to create additional AM entry to fill in missing entry
-        #USE PM ENTRY TWICE
-        #copy first pm entry to am dictionary
-        #this is the key
-        PM_KEY = list(forecast_dict['PM'].keys())[0])
-        forecast_dict['AM'][PM_KEY] = forecast_dict['PM'][PM_KEY] #move from pm to AM?
 
+        PM_KEY = list(forecast_dict['PM'].keys())[0] #this is the correct key
+        forecast_dict['AM'][PM_KEY] = forecast_dict['PM'][PM_KEY] #move from pm to AM?
 
         vis = build.vis(w,h,pm_count)
     #create view dictionary
     global view_dict
     view_dict = {}
 
-    for n,day in enumerate(forecast_dict['AM']):
+    for n,day in enumerate(sorted(forecast_dict['AM'])):
         d = n+1
         q = 'AM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui) #build dictionary
