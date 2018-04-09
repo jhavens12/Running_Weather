@@ -43,7 +43,7 @@ def first_run(forecast_dict,view):
     am_count = len(forecast_dict['AM'])
     pm_count = len(forecast_dict['PM'])
     global vis
-    if pm_count == am_count:
+    if pm_count <= am_count:
         vis = build.vis(w,h,am_count)
     if pm_count > am_count: #copy first PM key to AM key in case there is not an AM key to use
         PM_KEY = list(forecast_dict['PM'].keys())[0] #this is the correct key
