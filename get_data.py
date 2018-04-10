@@ -94,7 +94,7 @@ def forecast_me():
         for hour in hforecast['hourly_forecast']:
             if hour['FCTTIME']['hour_padded'] == '05':# or hour['FCTTIME']['hour_padded'] == '17': AM
 
-                if hour['FCTTIME']['weekday_name'] == 'Tuesday' or hour['FCTTIME']['weekday_name'] == 'Thursday' or hour['FCTTIME']['weekday_name'] == 'Saturday':
+                if hour['FCTTIME']['weekday_name'] == 'Tuesday' or hour['FCTTIME']['weekday_name'] == 'Thursday':# or hour['FCTTIME']['weekday_name'] == 'Saturday':
 
                     temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
                     temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
@@ -109,7 +109,7 @@ def forecast_me():
 
             if hour['FCTTIME']['hour_padded'] == '17':
 
-                if hour['FCTTIME']['weekday_name'] == 'Tuesday' or hour['FCTTIME']['weekday_name'] == 'Thursday' or hour['FCTTIME']['weekday_name'] == 'Saturday':
+                if hour['FCTTIME']['weekday_name'] == 'Tuesday' or hour['FCTTIME']['weekday_name'] == 'Thursday':# or hour['FCTTIME']['weekday_name'] == 'Saturday':
 
                     temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
                     temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
