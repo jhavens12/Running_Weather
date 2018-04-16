@@ -42,7 +42,7 @@ def switch_pressed(self):
 def first_run(forecast_dict,view):
     am_count = len(forecast_dict['AM'])
     pm_count = len(forecast_dict['PM'])
-    panel_count = 3
+    panel_count = 3 #limit to 3 panels regardless
     global vis
     if pm_count <= am_count:
         vis = build.vis(w,h,panel_count)
