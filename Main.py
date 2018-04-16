@@ -85,7 +85,7 @@ def first_run(forecast_dict,view):
         build.value_labels(n,vis,ui,view_dict[q],value_label_list,'PM')
 
     for c,subview in enumerate(view_dict):
-        if "AM_1" in subview or "AM_2" in subview or "AM_3" in subview: #limit to 3?
+        if "AM1" in subview or "AM2" in subview or "AM3" in subview: #limit to 3?
             view.add_subview(view_dict[subview])
             d = c+1 #start with button 1, not 0
             button = build.switch_buttons(d,subview,vis,ui) #pass cycle number, view name(data), vis library and ui element
