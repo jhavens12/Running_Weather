@@ -48,10 +48,14 @@ def first_run(forecast_dict,view):
     global vis
     if pm_count <= am_count:
         vis = build.vis(w,h,panel_count)
-    if pm_count > am_count: #copy first PM key to AM key in case there is not an AM key to use
+    if pm_count > am_count or datetime.datetime.now().hour > 5 and datetime.datetime.now().hour < 17 : #copy first PM key to AM key in case there is not an AM key to use
         PM_KEY = list(forecast_dict['PM'].keys())[0] #this is the correct key
         forecast_dict['AM'][PM_KEY] = forecast_dict['PM'][PM_KEY] #move from pm to AM?
         vis = build.vis(w,h,panel_count)
+
+
+
+
     #create view dictionary
     global view_dict
     view_dict = {}
