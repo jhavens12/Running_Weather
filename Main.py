@@ -42,13 +42,14 @@ def switch_pressed(self):
 def first_run(forecast_dict,view):
     am_count = len(forecast_dict['AM'])
     pm_count = len(forecast_dict['PM'])
+    panel_count = 3
     global vis
     if pm_count <= am_count:
-        vis = build.vis(w,h,am_count)
+        vis = build.vis(w,h,panel_count)
     if pm_count > am_count: #copy first PM key to AM key in case there is not an AM key to use
         PM_KEY = list(forecast_dict['PM'].keys())[0] #this is the correct key
         forecast_dict['AM'][PM_KEY] = forecast_dict['PM'][PM_KEY] #move from pm to AM?
-        vis = build.vis(w,h,pm_count)
+        vis = build.vis(w,h,panel_count)
     #create view dictionary
     global view_dict
     view_dict = {}
