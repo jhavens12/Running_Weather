@@ -41,7 +41,7 @@ def vis(w,h,entry_count):
         vis['header_x'] = vis['side_margin']
         vis['header_y'] = vis['top_margin'] / 4
         vis['header_width'] = vis['subview_width']-(vis['side_margin']*2)
-        vis['header_height'] = 64
+        vis['header_height'] = 70
     else:
         vis['header_x'] = vis['side_margin'] * 2
         vis['header_y'] = vis['top_margin'] / 2
@@ -155,7 +155,7 @@ def headers(n,vis,ui,day,view_name):
     header.alignment = 1 #1 is center, 0 is left justified
     header.font = ('<system-bold>',vis['header_label_size'])
     header.number_of_lines = 3
-    header.text = day['time']['mon_abbrev']+" "+day['time']['mday']+" "+day['time']['weekday_name']+" "+day['time']['civil']
+    header.text = day['time']['mon_abbrev']+" "+day['time']['mday']+"\n"+day['time']['weekday_name']+" "+day['time']['civil']
 
     return header
 
