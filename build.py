@@ -174,12 +174,18 @@ def subviews(n,vis,ui,day):
 
     return subview #return object
 
-def headers(n,vis,ui,day,view_name):
+def headers(n,vis,ui,day,view_name,timeset):
     #Headers
     label_name = "label"+str(n)
     header = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['header_x'], vis['header_y'], vis['header_width'], vis['header_height']))
-    header.border_color = 'white'
-    header.text_color = 'white'
+    if timeset == 'AM':
+        header.text_color = 'black'
+        header.border_color = 'black'
+    if timeset == 'PM':
+        header.text_color = 'white'
+        header.border_color = 'white'
+    #header.border_color = 'white'
+    #header.text_color = 'white'
     #header.tint_color = 'black'
     header.corner_radius = 15
     header.border_width = 5
