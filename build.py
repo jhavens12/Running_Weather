@@ -25,28 +25,28 @@ def vis(w,h,entry_count):
     vis['entry_count'] = entry_count
     #Subview
     vis['subview_width'] = (w/vis['entry_count'])-vis['side_margin']
-    if entry_count == 3:
-        vis['subview_height'] = h-(vis['top_margin']*6)
-    if entry_count == 2:
-        vis['subview_height'] = h-(vis['top_margin']*3.5)
-    if entry_count == 4:
-        vis['subview_height'] = h-(vis['top_margin']*9)
-    else:
-        vis['subview_height'] = h-(vis['top_margin']*3) #this is whats actually used
+    # if entry_count == 3:
+    #     vis['subview_height'] = h-(vis['top_margin']*6)
+    # if entry_count == 2:
+    #     vis['subview_height'] = h-(vis['top_margin']*3.5)
+    # if entry_count == 4:
+    #     vis['subview_height'] = h-(vis['top_margin']*9)
+    # else:
+    vis['subview_height'] = h-(vis['top_margin']*3) #this is whats actually used
 
     vis['subview_y'] = vis['top_margin']
     vis['subview_x'] = vis['side_margin']
     #Header
-    if entry_count >= 4:
-        vis['header_x'] = vis['side_margin']
-        vis['header_y'] = vis['top_margin'] / 4
-        vis['header_width'] = vis['subview_width']-(vis['side_margin']*2)
-        vis['header_height'] = 70
-    else:
-        vis['header_x'] = vis['side_margin'] * 2
-        vis['header_y'] = vis['top_margin'] / 2
-        vis['header_width'] = vis['subview_width']-(vis['side_margin']*4)
-        vis['header_height'] = 64
+    # if entry_count >= 4:
+    #     vis['header_x'] = vis['side_margin']
+    #     vis['header_y'] = vis['top_margin'] / 4
+    #     vis['header_width'] = vis['subview_width']-(vis['side_margin']*2)
+    #     vis['header_height'] = 70
+    # else:
+    vis['header_x'] = vis['side_margin'] * 2
+    vis['header_y'] = vis['top_margin'] / 2
+    vis['header_width'] = vis['subview_width']-(vis['side_margin']*4)
+    vis['header_height'] = 70
     #Image View
     vis['imageview_x'] = vis['header_x'] + (vis['side_margin'] * 2)
     vis['imageview_y'] = vis['header_y'] + vis['header_height'] + vis['spacing_margin']
@@ -131,11 +131,13 @@ def PM_titles_and_values(day):
 
     return title_label_list,value_label_list
 
-def subviews(n,vis,ui):
+def subviews(n,vis,ui,day):
     subview_x = vis['side_margin'] + ( ( vis['w_adjusted'] / vis['entry_count'] ) *n) #this is dynamic
     n = n+1
     view_name = "view_"+str(n)
-    subview = ui.ScrollView(frame=(subview_x, vis['subview_y'], vis['subview_width'], vis['subview_height']), background_color="#01B2FC")
+    subview = ui.ScrollView(frame=(subview_x, vis['subview_y'], vis['subview_width'], vis['subview_height']))
+    print(day['weather']['condition'])
+    subvew.background_color="#01B2FC"
     subview.border_color = 'black'
     subview.border_width = 0
     subview.corner_radius = 10
