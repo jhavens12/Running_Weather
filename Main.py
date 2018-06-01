@@ -46,6 +46,7 @@ def first_run(forecast_dict,view):
     pm_count = len(forecast_dict['PM'])
     print("AM Count: "+str(am_count))
     print("PM Count: "+str(pm_count))
+    print()
     panel_count = 3 #limit to 3 panels regardless
     global vis
     if pm_count <= am_count:

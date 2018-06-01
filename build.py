@@ -7,42 +7,40 @@ def evaluate_conditions(day):
     not_good = '#e60000'
     okay = 'yellow'
 
+    bg_color = good
     #current_date = day['time']['mon_abbrev']+" "+day['time']['mday']+" "+day['time']['weekday_name']+" "+day['time']['civil']
     current_date = day['time']['weekday_name']+" "+day['time']['civil']
 
     #TEMPERATURE
     if float(day['weather']['feelslike']['english']) < 20 or float(day['weather']['feelslike']['english']) > 90:
         bg_color = not_good
-        print("Temp for "+current_date+" is "+str(day['weather']['feelslike']['english'])+" - NOT GOOD")
+        print(current_date+" Temp is "+str(day['weather']['feelslike']['english'])+" - NOT GOOD")
         return bg_color #temp that extreme sends it
 
     if float(day['weather']['feelslike']['english']) < 35 or float(day['weather']['feelslike']['english']) > 80:
         bg_color = okay
-        print("Temp for "+current_date+" is "+str(day['weather']['feelslike']['english'])+" - OKAY")
+        print(current_date+" Temp is "+str(day['weather']['feelslike']['english'])+" - OKAY")
         #move on to see if something else turns it red
 
     #PERCIPITATION
     if float(day['weather']['pop']) > 50:
         bg_color = not_good
-        print("POP for "+current_date+" is "+str(day['weather']['pop'])+" - NOT GOOD")
+        print(current_date+" POP is "+str(day['weather']['pop'])+" - NOT GOOD")
         return bg_color
 
     if float(day['weather']['pop']) > 30:
         bg_color = okay
-        print("POP for "+current_date+" is "+str(day['weather']['pop'])+" - OKAY")
+        print(current_date+" POP is "+str(day['weather']['pop'])+" - OKAY")
 
     #HUMIDITY
     if float(day['weather']['humidity']) > 80:
         bg_color = not_good
-        print("Humidity for "+current_date+" is "+str(day['weather']['humidity'])+" - NOT GOOD")
+        print(current_date+" Humidity is "+str(day['weather']['humidity'])+" - NOT GOOD")
         return bg_color
 
     if float(day['weather']['humidity']) > 70:
         bg_color = okay
-        print("Humidity for "+current_date+" is "+str(day['weather']['humidity'])+" - OKAY")
-
-    else: #otherwise
-        bg_color = good
+        print(current_date+" Humidity is "+str(day['weather']['humidity'])+" - OKAY")
 
     return bg_color
 
