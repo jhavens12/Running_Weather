@@ -1,6 +1,34 @@
 import io
 import Image
 
+def evaluate_conditions(day):
+
+    good = 'green'
+    not_good = 'red'
+    okay = 'yellow'
+
+    #day['weather']['condition']
+    #day['weather']['temp']['english']
+    if float(day['weather']['feelslike']['english']) < 20 or float(day['weather']['feelslike']['english']) > 90:
+        bg_color = not_good
+        return bg_color
+    #day['weather']['dewpoint']['english']
+    if float(day['weather']['pop']) > 30:
+        bg_color = okay
+        if float(day['weather']['pop']) > 50:
+            bg_color = not_good
+        return bg_color
+    if float(day['weather']['humidity']) > 80:
+        bg_color = not_good
+        return bg_color
+
+    bg_color = good
+    return bg_color
+    #day['weather']['uvi']
+    #day['weather']['wspd']['english']
+    #day['weather']['windchill']['english']
+
+
 def pil2ui(ui,imgIn):
     with io.BytesIO() as bIO:
         imgIn.save(bIO, 'PNG')
@@ -136,8 +164,9 @@ def subviews(n,vis,ui,day):
     n = n+1
     view_name = "view_"+str(n)
     subview = ui.ScrollView(frame=(subview_x, vis['subview_y'], vis['subview_width'], vis['subview_height']))
-    print(day)
-    subview.background_color="#01B2FC"
+
+    bg_color = evaluate_conditions(day)
+    subview.background_color=bg_color#"#01B2FC"
     subview.border_color = 'black'
     subview.border_width = 0
     subview.corner_radius = 10
