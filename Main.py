@@ -12,7 +12,7 @@ forecast_dict = get_data.forecast_me() #get actual data
 #pprint(forecast_dict)
 
 def switch_pressed(self):
-    print ("Pressed "+self.name)
+    #print ("Pressed "+self.name)
     if "AM" in self.name: #passed name like button_AM1
         #print("Button pressed and AM displayed")
         view_name = self.name.replace("button_","")

@@ -4,7 +4,7 @@ import Image
 def evaluate_conditions(day):
 
     good = '#5cd65c'
-    not_good = 'red'
+    not_good = '#e60000'
     okay = 'yellow'
 
     #day['weather']['condition']
@@ -178,14 +178,14 @@ def headers(n,vis,ui,day,view_name,timeset):
     #Headers
     label_name = "label"+str(n)
     header = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['header_x'], vis['header_y'], vis['header_width'], vis['header_height']))
-    # if timeset == 'AM':
-    #     header.text_color = 'black'
-    #     header.border_color = 'black'
-    # if timeset == 'PM':
-    #     header.text_color = 'white'
-    #     header.border_color = 'white'
-    header.border_color = 'white'
-    header.text_color = 'white'
+    if timeset == 'AM':
+        header.text_color = 'black'
+        header.border_color = 'black'
+    if timeset == 'PM':
+        header.text_color = 'white'
+        header.border_color = 'white'
+    #header.border_color = 'white'
+    #header.text_color = 'white'
     #header.tint_color = 'black'
     header.corner_radius = 15
     header.border_width = 5
@@ -230,10 +230,11 @@ def title_labels(n,vis,ui,view_name,title_label_list,timeset):
         label_name = "tlabel"+str(view_name)+str(x)
         label = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['title_label_x'], adjusted_label_y, vis['title_label_width'], vis['title_label_height']))
         label.border_color = 'black'
-        if timeset == 'AM':
-            label.text_color = 'black'
-        if timeset == 'PM':
-            label.text_color = 'white'
+        # if timeset == 'AM':
+        #     label.text_color = 'black'
+        # if timeset == 'PM':
+        #     label.text_color = 'white'
+        label.text_color = 'black'
         label.border_width = 0
         label.alignment = 0 #1 is center, #0 is left justified
         label.font = ('<system-bold>',vis['title_label_size'])
@@ -247,11 +248,12 @@ def value_labels(n,vis,ui,view_name,value_label_list,timeset):
         x = x+1
         label_name = "vlabel"+str(view_name)+str(x)
         label = ui.Label(name = label_name, bg_color ='transparent', frame = (vis['value_label_x'], adjusted_label_y, vis['value_label_width'], vis['value_label_height']))
-        label.border_color = 'black'
-        if timeset == 'AM':
-            label.text_color = 'black'
-        if timeset == 'PM':
-            label.text_color = 'white'
+        # label.border_color = 'black'
+        # if timeset == 'AM':
+        #     label.text_color = 'black'
+        # if timeset == 'PM':
+        #     label.text_color = 'white'
+        label.text_color = 'black'
         label.border_width = 0
         label.alignment = 3 #1 is center, #0 is left justified
         label.font = ('<system>',vis['value_label_size'])
