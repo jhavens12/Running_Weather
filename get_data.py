@@ -99,13 +99,13 @@ def forecast_me():
                 temp_date = hour['FCTTIME']['year'] +"-"+ hour['FCTTIME']['mon'] +"-"+ hour['FCTTIME']['mday']
                 temp_time = hour['FCTTIME']['hour_padded'] +":"+ hour['FCTTIME']['min']+":"+"00"
                 date_key = datetime.datetime.strptime(temp_date+" "+temp_time, '%Y-%m-%d %H:%M:%S')
+                if date_key < current_timestamp - datetime.timedelta(days=3): #if date is within three days
 
-                forecast_dict['AM'][date_key] = {}
-                forecast_dict['AM'][date_key]['twilight'] = twilight(temp_date)
-                forecast_dict['AM'][date_key]['time'] = hour['FCTTIME']
-                #del forecast_dict['AM'][date_key]['time']['UTCDATE']
-                forecast_dict['AM'][date_key]['weather'] = hour
-                #del forecast_dict['AM'][date_key]['weather']['FCTTIME']
+                    forecast_dict['AM'][date_key] = {}
+                    forecast_dict['AM'][date_key]['twilight'] = twilight(temp_date)
+                    forecast_dict['AM'][date_key]['time'] = hour['FCTTIME']
+                    forecast_dict['AM'][date_key]['weather'] = hour
+
 
             if hour['FCTTIME']['hour_padded'] == '17':
 
