@@ -5,7 +5,7 @@ def evaluate_conditions(day):
 
     good = '#5cd65c'
     not_good = '#e60000'
-    okay = 'yellow'
+    okay = "#ff884d"
 
     bg_color = good
     #current_date = day['time']['mon_abbrev']+" "+day['time']['mday']+" "+day['time']['weekday_name']+" "+day['time']['civil']
