@@ -7,23 +7,39 @@ def evaluate_conditions(day):
     not_good = '#e60000'
     okay = 'yellow'
 
-    #day['weather']['condition']
-    #day['weather']['temp']['english']
+    #TEMPERATURE
     if float(day['weather']['feelslike']['english']) < 20 or float(day['weather']['feelslike']['english']) > 90:
         bg_color = not_good
+        return bg_color #temp that extreme sends it
+
+    if float(day['weather']['feelslike']['english']) < 35 or float(day['weather']['feelslike']['english']) > 80:
+        bg_color = okay
+        #move on to see if something else turns it red
+
+    #PERCIPITATION
+    if float(day['weather']['pop']) > 50:
+        bg_color = not_good
         return bg_color
-    #day['weather']['dewpoint']['english']
+
     if float(day['weather']['pop']) > 30:
         bg_color = okay
-        if float(day['weather']['pop']) > 50:
-            bg_color = not_good
-        return bg_color
+
+    #HUMIDITY
     if float(day['weather']['humidity']) > 80:
         bg_color = not_good
         return bg_color
 
-    bg_color = good
+    if float(day['weather']['humidity']) > 70:
+        bg_color = okay
+
+    else: #otherwise
+        bg_color = good
+
     return bg_color
+
+    #day['weather']['dewpoint']['english']
+    #day['weather']['condition']
+    #day['weather']['temp']['english']
     #day['weather']['uvi']
     #day['weather']['wspd']['english']
     #day['weather']['windchill']['english']
