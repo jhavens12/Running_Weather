@@ -56,8 +56,6 @@ def first_run(forecast_dict,view):
         vis = build.vis(w,h,panel_count)
 
 
-
-
     #create view dictionary
     global view_dict
     view_dict = {}
@@ -65,7 +63,7 @@ def first_run(forecast_dict,view):
     for n,day in enumerate(sorted(forecast_dict['AM'])): #create AM views
         d = n+1
         q = 'AM'+str(d)
-        view_dict[q] = build.subviews(n,vis,ui,day) #build dictionary
+        view_dict[q] = build.subviews(n,vis,ui,forecast_dict['AM']day) #build dictionary
         header = build.headers(n,vis,ui,forecast_dict['AM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
         view_dict[q].add_subview(header)
         imageview = build.imageview_local(n,vis,ui,forecast_dict['AM'][day],view_dict[q])
@@ -83,7 +81,7 @@ def first_run(forecast_dict,view):
     for n,day in enumerate(forecast_dict['PM']): #Create PM Views
         d = n+1
         q = 'PM'+str(d)
-        view_dict[q] = build.subviews(n,vis,ui,day) #build dictionary
+        view_dict[q] = build.subviews(n,vis,ui,forecast_dict['PM']day) #build dictionary
         view_dict[q].background_color = "#0952c6" #change for PM
         header = build.headers(n,vis,ui,forecast_dict['PM'][day],view_dict[q]) #n, vis dict, ui object, day info, view_name
         view_dict[q].add_subview(header)

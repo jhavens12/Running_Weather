@@ -136,8 +136,8 @@ def subviews(n,vis,ui,day):
     n = n+1
     view_name = "view_"+str(n)
     subview = ui.ScrollView(frame=(subview_x, vis['subview_y'], vis['subview_width'], vis['subview_height']))
-    print(day['weather']['condition'])
-    subvew.background_color="#01B2FC"
+    print(day)
+    subview.background_color="#01B2FC"
     subview.border_color = 'black'
     subview.border_width = 0
     subview.corner_radius = 10
