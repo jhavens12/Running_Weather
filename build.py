@@ -189,6 +189,7 @@ def subviews(n,vis,ui,day):
     subview = ui.ScrollView(frame=(subview_x, vis['subview_y'], vis['subview_width'], vis['subview_height']))
 
     bg_color = evaluate_conditions(day)
+
     subview.background_color=bg_color#"#01B2FC"
     subview.border_color = 'black'
     subview.border_width = 0

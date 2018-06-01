@@ -66,7 +66,6 @@ def first_run(forecast_dict,view):
         q = 'AM'+str(d)
         view_dict[q] = build.subviews(n,vis,ui,forecast_dict['AM'][day]) #build dictionary
         header = build.headers(n,vis,ui,forecast_dict['AM'][day],view_dict[q],'AM') #n, vis dict, ui object, day info, view_name
-        #view_dict[q].add_subview(header)
         imageview = build.imageview_local(n,vis,ui,forecast_dict['AM'][day],view_dict[q])
         view_dict[q].add_subview(imageview)
         if day.hour < 10: #if the hour is truly AM time
