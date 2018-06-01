@@ -9,6 +9,7 @@ w,h = ui.get_screen_size()
 view = ui.View(bg_color = 'white', frame = (0,0,w,h)) #main view
 
 forecast_dict = get_data.forecast_me() #get actual data
+pprint(forecast_dict)
 
 def switch_pressed(self):
     print ("Pressed "+self.name)
