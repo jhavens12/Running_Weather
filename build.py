@@ -7,7 +7,8 @@ def evaluate_conditions(day):
     not_good = '#e60000'
     okay = 'yellow'
 
-    current_date = day['time']['mon_abbrev']+" "+day['time']['mday']+" "+day['time']['weekday_name']+" "+day['time']['civil']
+    #current_date = day['time']['mon_abbrev']+" "+day['time']['mday']+" "+day['time']['weekday_name']+" "+day['time']['civil']
+    current_date = day['time']['weekday_name']+" "+day['time']['civil']
 
     #TEMPERATURE
     if float(day['weather']['feelslike']['english']) < 20 or float(day['weather']['feelslike']['english']) > 90:
